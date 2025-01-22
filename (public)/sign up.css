@@ -1,0 +1,21 @@
+.dropdown-center{
+    padding-bottom: 10px;
+    padding-top:10px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Make the dropdown button larger */
+.dropdown-toggle {
+    width: 100%;
+}
+
+.form-check{
+    display:flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.form-check-label {
+    margin-left: 5px;  /* Adjust space between the checkbox and the label */
+}
