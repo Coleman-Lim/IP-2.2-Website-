@@ -25,6 +25,7 @@
 
 
 <body>
+    <p id = "test"></p>
     <!-- Navbar Section -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
@@ -81,7 +82,8 @@
                                     placeholder="Enter your password" required>
                             </div>
                             <div class="dropdown-center">
-                                <button class="btn btn-custom dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-custom dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
                                     <span class="dropdown-text">Gender</span>
                                 </button>
                                 <ul class="dropdown-menu">
@@ -90,10 +92,11 @@
                                     <li><a class="dropdown-item" href="#">Action three</a></li>
                                 </ul>
                             </div>
-                            
-                            
+
+
                             <div class="dropdown-center">
-                                <button class="btn btn-custom dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button class="btn btn-custom dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
                                     <span class="dropdown-text">Race</span>
                                 </button>
                                 <ul class="dropdown-menu">
@@ -173,17 +176,22 @@
             const email = document.getElementById("signUpEmail").value;
             const password = document.getElementById("signUpPassword").value;
 
+
             createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
                 const user = userCredential.user;
                 console.log("User signed up:", user);
-                alert("Sign up successful");
+                
 
-                const accountCreationDate = new Date().toISOString();
+                
+                const accountCreationDate = new Date();
+                let time = Math.floor(accountCreationDate.getTime() / 1000);
+                document.getElementById("test").innerHTML = time;
 
                 set(ref(db, 'players/' + user.uid), {
                     account_creation_date: accountCreationDate,
                     active_status: true,
                     email: email,
+                    last_logged_in_time: accountCreationDate,
                     username: username,
                 })
                     .then(() => {
@@ -206,6 +214,25 @@
                     console.error("Sign up error:", error.message);
                     alert(`Error: ${error.message}`);
                 });
+        });
+
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                // User is signed in
+                const uid = user.uid;
+                const currentTimestamp = new Date().toISOString();
+
+                try {
+                    await updateDoc(doc(db, 'players', uid), {
+                        last_logged_in_time: currentTimestamp,
+                    });
+                    console.log("Last logged in time updated for user:", uid);
+                } catch (error) {
+                    console.error("Error updating last logged in time:", error.message);
+                }
+            } else {
+                // User is signed out
+            }
         });
     </script>
 </body>
