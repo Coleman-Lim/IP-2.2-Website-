@@ -27,6 +27,7 @@
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="navbar.css" rel="stylesheet">
     <link href="Homepage.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <style>
         .gradient-bg {
             background: #d3d3d3;
@@ -137,6 +138,7 @@
         .bd-mode-toggle .dropdown-menu .active .bi {
             display: block !important;
         }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -183,7 +185,8 @@
             font-size: 20px;
             font-weight: bold;
             margin: 0;
-            color: #999; /* Placeholder for empty stats */
+            color: #999;
+            /* Placeholder for empty stats */
         }
 
         .leaderboard {
@@ -239,11 +242,36 @@
             margin-right: 0;
         }
 
-        
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+        }
+
+        #myBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: blue;
+            color: white;
+            cursor: pointer;
+            padding: 20px;
+            border-radius: 4px;
+        }
+
+        #myBtn:hover {
+            background-color: #555;
+        }
     </style>
 </head>
 
 <body>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">
+        <i class="fas fa-chevron-up"></i> </button>
     <!-- Navbar Section -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
@@ -375,7 +403,7 @@
                                     <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
-                                <small class="text-body-secondary">9 mins</small>
+                                
                             </div>
                         </div>
                     </div>
@@ -397,7 +425,7 @@
                                     <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
-                                <small class="text-body-secondary">9 mins</small>
+                                
                             </div>
                         </div>
                     </div>
@@ -419,7 +447,7 @@
                                     <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
-                                <small class="text-body-secondary">9 mins</small>
+                                
                             </div>
                         </div>
                     </div>
@@ -442,7 +470,7 @@
                                     <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
-                                <small class="text-body-secondary">9 mins</small>
+                                
                             </div>
                         </div>
                     </div>
@@ -464,7 +492,7 @@
                                     <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
-                                <small class="text-body-secondary">9 mins</small>
+                                
                             </div>
                         </div>
                     </div>
@@ -486,7 +514,7 @@
                                     <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
-                                <small class="text-body-secondary">9 mins</small>
+                                
                             </div>
                         </div>
                     </div>
@@ -501,104 +529,104 @@
     <!-- Fourth Container -->
     <div class="container my-4">
         <div class="container">
-        <h2>Overview</h2>
-        <div class="stats">
-            <div class="stat-box">
-                <h3>Total Players:</h3>
-                <p>--</p> <!-- Placeholder for empty stats -->
+            <h2>Overview</h2>
+            <div class="stats">
+                <div class="stat-box">
+                    <h3>Total Players:</h3>
+                    <p>--</p> <!-- Placeholder for empty stats -->
+                </div>
+                <div class="stat-box">
+                    <h3>Active Players:</h3>
+                    <p>--</p> <!-- Placeholder for empty stats -->
+                </div>
+                <div class="stat-box">
+                    <h3>Average Score:</h3>
+                    <p>--</p> <!-- Placeholder for empty stats -->
+                </div>
             </div>
-            <div class="stat-box">
-                <h3>Active Players:</h3>
-                <p>--</p> <!-- Placeholder for empty stats -->
-            </div>
-            <div class="stat-box">
-                <h3>Average Score:</h3>
-                <p>--</p> <!-- Placeholder for empty stats -->
-            </div>
-        </div>
 
-        <div class="leaderboard">
-            <h2>Leader Board</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Name</th>
-                        <th>Score</th>
-                        <th>Time</th>
-                        <th>Active Status</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>bobby1000</td>
-                        <td>670</td>
-                        <td>11min 10sec</td>
-                        <td class="active">Active</td>
-                        <td>11 Dec 2025</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>sammy1234</td>
-                        <td>654</td>
-                        <td>16min 8sec</td>
-                        <td class="active">Active</td>
-                        <td>9 Dec 2025</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>hello11111</td>
-                        <td>599</td>
-                        <td>9min 45sec</td>
-                        <td class="offline">Offline</td>
-                        <td>8 Dec 2025</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>hello0000</td>
-                        <td>456</td>
-                        <td>22min 1sec</td>
-                        <td class="active">Active</td>
-                        <td>6 Dec 2025</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>brian22</td>
-                        <td>321</td>
-                        <td>19min 22sec</td>
-                        <td class="offline">Offline</td>
-                        <td>13 Dec 2025</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>charsiew</td>
-                        <td>234</td>
-                        <td>13min 5sec</td>
-                        <td class="offline">Offline</td>
-                        <td>12 Dec 2025</td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>banana</td>
-                        <td>123</td>
-                        <td>7min 15sec</td>
-                        <td class="active">Active</td>
-                        <td>4 Dec 2025</td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>blueberry</td>
-                        <td>23</td>
-                        <td>16min 10sec</td>
-                        <td class="offline">Offline</td>
-                        <td>1 Dec 2025</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="leaderboard">
+                <h2>Leader Board</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Name</th>
+                            <th>Score</th>
+                            <th>Time</th>
+                            <th>Active Status</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>bobby1000</td>
+                            <td>670</td>
+                            <td>11min 10sec</td>
+                            <td class="active">Active</td>
+                            <td>11 Dec 2025</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>sammy1234</td>
+                            <td>654</td>
+                            <td>16min 8sec</td>
+                            <td class="active">Active</td>
+                            <td>9 Dec 2025</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>hello11111</td>
+                            <td>599</td>
+                            <td>9min 45sec</td>
+                            <td class="offline">Offline</td>
+                            <td>8 Dec 2025</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>hello0000</td>
+                            <td>456</td>
+                            <td>22min 1sec</td>
+                            <td class="active">Active</td>
+                            <td>6 Dec 2025</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>brian22</td>
+                            <td>321</td>
+                            <td>19min 22sec</td>
+                            <td class="offline">Offline</td>
+                            <td>13 Dec 2025</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>charsiew</td>
+                            <td>234</td>
+                            <td>13min 5sec</td>
+                            <td class="offline">Offline</td>
+                            <td>12 Dec 2025</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>banana</td>
+                            <td>123</td>
+                            <td>7min 15sec</td>
+                            <td class="active">Active</td>
+                            <td>4 Dec 2025</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>blueberry</td>
+                            <td>23</td>
+                            <td>16min 10sec</td>
+                            <td class="offline">Offline</td>
+                            <td>1 Dec 2025</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
     </div>
 
     <!-- Fifth Container -->
@@ -678,4 +706,24 @@
     </div>
 </main>
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    let mybutton = document.getElementById("myBtn");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
 </body>

@@ -25,7 +25,6 @@
 
 
 <body>
-    <p id = "test"></p>
     <!-- Navbar Section -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
@@ -105,10 +104,13 @@
                                     <li><a class="dropdown-item" href="#">Action three</a></li>
                                 </ul>
                             </div>
-                            <br>
+                            
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-primary">Create Account</button>
                             </div>
+                            <p class="text-center mt-3">
+                                Have an existing account? <a href="sign in.html" class="link">Sign In</a>
+                            </p>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
                                 <label class="form-check-label" for="flexCheckChecked">
@@ -182,16 +184,14 @@
                 console.log("User signed up:", user);
                 
 
-                
-                const accountCreationDate = new Date();
-                let time = Math.floor(accountCreationDate.getTime() / 1000);
-                document.getElementById("test").innerHTML = time;
+                const accountCreationDate = new Date(); 
+                const unixTimestamp = Math.floor(accountCreationDate.getTime() / 1000); 
 
                 set(ref(db, 'players/' + user.uid), {
-                    account_creation_date: accountCreationDate,
+                    account_creation_date: unixTimestamp,
                     active_status: true,
                     email: email,
-                    last_logged_in_time: accountCreationDate,
+                    last_logged_in_time: unixTimestamp,
                     username: username,
                 })
                     .then(() => {
@@ -216,24 +216,7 @@
                 });
         });
 
-        auth.onAuthStateChanged(async (user) => {
-            if (user) {
-                // User is signed in
-                const uid = user.uid;
-                const currentTimestamp = new Date().toISOString();
-
-                try {
-                    await updateDoc(doc(db, 'players', uid), {
-                        last_logged_in_time: currentTimestamp,
-                    });
-                    console.log("Last logged in time updated for user:", uid);
-                } catch (error) {
-                    console.error("Error updating last logged in time:", error.message);
-                }
-            } else {
-                // User is signed out
-            }
-        });
+        
     </script>
 </body>
 
