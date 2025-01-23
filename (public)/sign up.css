@@ -1,6 +1,5 @@
 .dropdown-center{
-    padding-bottom: 10px;
-    padding-top:10px;
+    padding-bottom: 20px;
     display: flex;
     justify-content: center;
 }
@@ -19,3 +18,49 @@
 .form-check-label {
     margin-left: 5px;  /* Adjust space between the checkbox and the label */
 }
+
+/* Custom button style */
+.btn-custom {
+    background-color: white; /* Set button background color to white */
+    border: 1px solid black; /* Set border color to black */
+    color: black; /* Set text color to black */
+    display: flex; /* Use flexbox for alignment */
+    justify-content: flex-start; /* Align text to the left */
+    align-items: center; /* Center items vertically */
+    padding-right: 1.5rem; /* Space between text and arrow */
+    padding-left: 0.75rem; /* Add padding to left for the text */
+}
+
+/* Adjust the dropdown text */
+.dropdown-text {
+    margin-right: 10px; /* Space between the text and arrow */
+}
+
+/* Custom dropdown menu style */
+.dropdown-menu {
+    background-color: white; /* Set dropdown background to white */
+    border: 1px solid black; /* Set border color to black */
+}
+
+/* Custom dropdown item style */
+.dropdown-item {
+    color: black; /* Set text color for dropdown items */
+}
+
+/* Hover effect for dropdown items */
+.dropdown-item:hover {
+    background-color: #f8f9fa; /* Light hover effect */
+    color: black; /* Keep text color black on hover */
+}
+
+/* Ensure that the dropdown caret arrow is aligned */
+.dropdown-toggle::after {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px; /* Space between text and arrow */
+}
+
+.create-account{
+    margin-top: 10px;
+}
+

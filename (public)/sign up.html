@@ -81,9 +81,8 @@
                                     placeholder="Enter your password" required>
                             </div>
                             <div class="dropdown-center">
-                                <button class="btn btn-secondary dropdown-toggle" type="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Gender
+                                <button class="btn btn-custom dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="dropdown-text">Gender</span>
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="#">Action</a></li>
@@ -91,6 +90,19 @@
                                     <li><a class="dropdown-item" href="#">Action three</a></li>
                                 </ul>
                             </div>
+                            
+                            
+                            <div class="dropdown-center">
+                                <button class="btn btn-custom dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="dropdown-text">Race</span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Action two</a></li>
+                                    <li><a class="dropdown-item" href="#">Action three</a></li>
+                                </ul>
+                            </div>
+                            <br>
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-primary">Create Account</button>
                             </div>
@@ -137,7 +149,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
         import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
-        import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+        import { getDatabase, ref, get, set } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyAXUldvOSdXM2ySevIf_Dt9WRkO_YPK-A0",
@@ -166,7 +178,27 @@
                 console.log("User signed up:", user);
                 alert("Sign up successful");
 
-                window.location.href = "Homepage.html";
+                const accountCreationDate = new Date().toISOString();
+
+                set(ref(db, 'players/' + user.uid), {
+                    account_creation_date: accountCreationDate,
+                    active_status: true,
+                    email: email,
+                    username: username,
+                })
+                    .then(() => {
+                        console.log("User data saved to database");
+                        alert("Sign up successful");
+                        window.location.href = "Homepage.html";
+
+                    })
+                    .catch((error) => {
+                        console.error("Error saving user data to database:", error.message);
+                        alert(`Error: ${error.message}`);
+                    });
+
+
+
 
 
             })
