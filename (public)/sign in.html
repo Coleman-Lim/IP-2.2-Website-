@@ -71,7 +71,7 @@
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <h3 class="card-title text-center mb-4">Sign In</h3>
-                        <form>
+                        <form id="loginUser">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email Address</label>
                                 <input type="email" class="form-control" id="email" placeholder="Enter your email"
@@ -89,37 +89,93 @@
                         <p class="text-center mt-3">
                             Don't have an account? <a href="#">Sign Up</a>
                         </p>
-                        <p class="text-center mt-3"><a href="#">Forgot Password?</a></p>
+                        <p class="text-center mt-3"><a href="#" id="forgetPasswordLink">Forgot Password?</a></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-   <!-- Footer Section -->
-<footer class="footer">
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-left">
-                <ul class="footer-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Features</a></li>
-                    <li><a href="#">Pricing</a></li>
-                    <li><a href="#">FAQs</a></li>
-                    <li><a href="#">About</a></li>
-                </ul>
-            </div>
-            <div class="footer-social">
-                <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>    
-                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
+        import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+        import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
 
+        const firebaseConfig = {
+            apiKey: "AIzaSyAXUldvOSdXM2ySevIf_Dt9WRkO_YPK-A0",
+            authDomain: "ip-holohands.firebaseapp.com",
+            databaseURL: "https://ip-holohands-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "ip-holohands",
+            storageBucket: "ip-holohands.firebasestorage.app",
+            messagingSenderId: "470348418514",
+            appId: "1:470348418514:web:c7c1e2fef3a74567088c0b",
+            measurementId: "G-TMVDP0CP36"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+        const db = getDatabase();
+
+
+        document.getElementById("loginUser").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+                const user = userCredential.user;
+                console.log("User logged in:", user);
+                alert("Login successful!");
+
+                window.location.href = "Homepage.html";
+
+            })
+                .catch((error) => {
+                    console.error("Login error:", error.message);
+                    alert(`Error: ${error.message}`);
+                })
+        });
+
+        document.getElementById("forgetPasswordLink").addEventListener("click", (e) => {
+            e.preventDefault();
+            const email = prompt("Enter your email to reset the password");
+            if (email) {
+                sendPasswordResetEmail(auth, email).then(() => {
+                    alert("Password reset email sent! Check your inbox!");
+                }).catch((error) => {
+                    console.error("Password reset error:", error.message);
+                    alert(`Error: ${error.message}`);
+                });
+            
+            } else {
+                alert("Email address is required");
+            }
+        });
+    </script>
 </body>
 
 </html>
