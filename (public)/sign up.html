@@ -41,19 +41,8 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" aria-disabled="true">Disabled</a>
@@ -77,6 +66,11 @@
                         <h3 class="card-title text-center mb-4">Sign Up</h3>
                         <form>
                             <div class="mb-3">
+                                <label for="email" class="form-label">Username</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter your Username"
+                                    required>
+                            </div>
+                            <div class="mb-3">
                                 <label for="email" class="form-label">Email Address</label>
                                 <input type="email" class="form-control" id="email" placeholder="Enter your email"
                                     required>
@@ -85,10 +79,6 @@
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" class="form-control" id="password"
                                     placeholder="Enter your password" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="dob" class="form-label">Date of Birth</label>
-                                <input type="date" class="form-control" id="dob" required>
                             </div>
                             <div class="dropdown-center">
                                 <button class="btn btn-secondary dropdown-toggle" type="button"
