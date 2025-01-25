@@ -315,9 +315,9 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="stat-box1">
-                    <p><strong>Name:</strong> </p>
                     <p><strong>Username:</strong> </p>
                     <p><strong>Email:</strong> </p>
+                    <p><strong>Account Creation Date:</strong> </p>
                 </div>
             </div>
             <div class="col-md-6">
@@ -403,7 +403,7 @@
                                     <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -425,7 +425,7 @@
                                     <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -447,7 +447,7 @@
                                     <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -470,7 +470,7 @@
                                     <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -492,7 +492,7 @@
                                     <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -514,7 +514,7 @@
                                     <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -706,7 +706,7 @@
     </div>
 </main>
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-<script>
+<script type = "module">
     let mybutton = document.getElementById("myBtn");
 
     // When the user scrolls down 20px from the top of the document, show the button
@@ -725,5 +725,58 @@
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
     }
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
+    import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+    import { getDatabase, ref, get, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAXUldvOSdXM2ySevIf_Dt9WRkO_YPK-A0",
+        authDomain: "ip-holohands.firebaseapp.com",
+        databaseURL: "https://ip-holohands-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "ip-holohands",
+        storageBucket: "ip-holohands.firebasestorage.app",
+        messagingSenderId: "470348418514",
+        appId: "1:470348418514:web:c7c1e2fef3a74567088c0b",
+        measurementId: "G-TMVDP0CP36"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    const db = getDatabase();
+
+    function loadUserProfile(email) {
+    const userRef = ref(db, 'players');
+    const userQuery = query(userRef, orderByChild('email'), equalTo(email));
+
+    get(userQuery)
+        .then(snapshot => {
+            if (snapshot.exists()) {
+                const userData = snapshot.val();
+                const user = Object.values(userData)[0];
+                console.log("User data found:", user);
+
+                // Populate the container with user data
+                document.querySelector('.stat-box1').innerHTML = `
+                    <p><strong>Username:</strong> ${user.userName}</p>
+                    <p><strong>Email:</strong> ${user.email}</p>
+                    <p><strong>Account Creation Date:</strong> ${new Date(user.createdOn * 1000).toLocaleString()}</p>
+                `;
+
+            } else {
+                console.log("No user found with this email.");
+                document.querySelector('.stat-box1').innerHTML = "<p>User not found.</p>";
+            }
+        })
+        .catch(error => {
+            console.error("Error loading user data:", error);
+            document.querySelector('.stat-box1').innerHTML = "<p>Error loading user profile.</p>";
+        });
+}
+
+
+
+
 </script>
 </body>
