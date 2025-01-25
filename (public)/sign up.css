@@ -14,7 +14,7 @@
 
 .select-menu .select-btn{
     display: flex;
-    height: 55px;
+    height: 40px;
     background: #fff;
     padding: 20px;
     
@@ -65,7 +65,7 @@
 
 .select-menu1 .select-btn1{
     display: flex;
-    height: 55px;
+    height: 40px;
     background: #fff;
     padding: 20px;
     
@@ -112,4 +112,14 @@
 .option1 .option-text1{
     
     color: #333;
+}
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url('images/background.jpg'); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+    height: 100vh; 
+    width: 100vw;
 }

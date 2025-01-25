@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <style>
         .gradient-bg {
-            background: #d3d3d3;
+            background: #d3d3d3 !important;
             padding: 2rem;
             border-radius: 0.5rem;
         }
@@ -143,13 +143,18 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom right, #f8f9fa, #eaf1fc);
+            background-image: url('images/background.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+
         }
 
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 30px auto;
+
         }
 
         h2 {
@@ -266,6 +271,10 @@
         #myBtn:hover {
             background-color: #555;
         }
+
+        .album {
+            background-color: transparent !important;
+        }
     </style>
 </head>
 
@@ -371,12 +380,29 @@
                     responsive: true,
                     scales: {
                         y: {
-                            beginAtZero: true // Ensure Y-axis starts at zero
+                            beginAtZero: true, // Ensure Y-axis starts at zero
+                            ticks: {
+                                color: 'black' // Change Y-axis text color to black
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                color: 'black' // Change X-axis text color to black
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: 'black' // Change the legend label text color to black
+                            }
                         }
                     }
                 }
             });
         </script>
+    </div>
+
 
     </div>
 
@@ -706,7 +732,7 @@
     </div>
 </main>
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-<script type = "module">
+<script type="module">
     let mybutton = document.getElementById("myBtn");
 
     // When the user scrolls down 20px from the top of the document, show the button
@@ -747,33 +773,33 @@
     const db = getDatabase();
 
     function loadUserProfile(email) {
-    const userRef = ref(db, 'players');
-    const userQuery = query(userRef, orderByChild('email'), equalTo(email));
+        const userRef = ref(db, 'players');
+        const userQuery = query(userRef, orderByChild('email'), equalTo(email));
 
-    get(userQuery)
-        .then(snapshot => {
-            if (snapshot.exists()) {
-                const userData = snapshot.val();
-                const user = Object.values(userData)[0];
-                console.log("User data found:", user);
+        get(userQuery)
+            .then(snapshot => {
+                if (snapshot.exists()) {
+                    const userData = snapshot.val();
+                    const user = Object.values(userData)[0];
+                    console.log("User data found:", user);
 
-                // Populate the container with user data
-                document.querySelector('.stat-box1').innerHTML = `
+                    // Populate the container with user data
+                    document.querySelector('.stat-box1').innerHTML = `
                     <p><strong>Username:</strong> ${user.userName}</p>
                     <p><strong>Email:</strong> ${user.email}</p>
                     <p><strong>Account Creation Date:</strong> ${new Date(user.createdOn * 1000).toLocaleString()}</p>
                 `;
 
-            } else {
-                console.log("No user found with this email.");
-                document.querySelector('.stat-box1').innerHTML = "<p>User not found.</p>";
-            }
-        })
-        .catch(error => {
-            console.error("Error loading user data:", error);
-            document.querySelector('.stat-box1').innerHTML = "<p>Error loading user profile.</p>";
-        });
-}
+                } else {
+                    console.log("No user found with this email.");
+                    document.querySelector('.stat-box1').innerHTML = "<p>User not found.</p>";
+                }
+            })
+            .catch(error => {
+                console.error("Error loading user data:", error);
+                document.querySelector('.stat-box1').innerHTML = "<p>Error loading user profile.</p>";
+            });
+    }
 
 
 

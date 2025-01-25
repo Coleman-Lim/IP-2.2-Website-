@@ -21,7 +21,18 @@
 
 
 </head>
-
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-image: url('images/background.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 100vh;
+        width: 100vw;
+    }
+</style>
 
 <body>
     <!-- Navbar Section -->
@@ -170,7 +181,7 @@
                     console.error("Password reset error:", error.message);
                     alert(`Error: ${error.message}`);
                 });
-            
+
             } else {
                 alert("Email address is required");
             }
