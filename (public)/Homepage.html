@@ -305,423 +305,433 @@
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <button class="btn btn-outline-success" type="button" style="border: none;"
+                        onclick="window.location.href = 'profile.html'">
+                        <img src="images/profile pic white.jpg" alt="Profile"
+                            style="width: 50px; height: 50px; border-radius: 50%;">
+                    </button>
                 </form>
             </div>
         </div>
     </nav>
-</body>
-<!-- Main Content Section -->
-<main>
-    <div class="container my-4">
-        <h1 class="WelcomeText"><span id = "username1">___</span></h1>
-    </div>
 
-    <!-- First Container -->
-    <div class="container gradient-bg mt-5">
-        <h2 class="title">Your Statistics</h2>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="stat-box1" id="userProfile"></div>
+    <!-- Main Content Section -->
+    <main>
+        <div class="container my-4">
+            <h1 class="WelcomeText"><span id="username1">___</span></h1>
+        </div>
+
+        <!-- First Container -->
+        <div class="container gradient-bg mt-5">
+            <h2 class="title">Your Statistics</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="stat-box1" id="userProfile"></div>
+                </div>
             </div>
         </div>
-    </div>
 
 
-    <!-- Second Container -->
-    <div class="container my-4">
-        <h2 class="text-center">Example Bar Chart</h2>
-        <div class="chart-container">
-            <canvas id="myChart"></canvas>
-        </div>
+        <!-- Second Container -->
+        <div class="container my-4">
+            <h2 class="text-center">Example Bar Chart</h2>
+            <div class="chart-container">
+                <canvas id="myChart"></canvas>
+            </div>
 
-        <script>
-            // Get the canvas element
-            const ctx = document.getElementById('myChart').getContext('2d');
+            <script>
+                // Get the canvas element
+                const ctx = document.getElementById('myChart').getContext('2d');
 
-            // Create the chart
-            new Chart(ctx, {
-                type: 'bar', // Chart type: 'bar', 'line', 'pie', etc.
-                data: {
-                    labels: ['January', 'February', 'March', 'April', 'May'], // X-axis labels
-                    datasets: [{
-                        label: 'Sales in USD', // Dataset label
-                        data: [120, 150, 180, 100, 200], // Data points
-                        backgroundColor: [
-                            'rgba(75, 192, 192, 0.5)',
-                            'rgba(54, 162, 235, 0.5)',
-                            'rgba(255, 206, 86, 0.5)',
-                            'rgba(153, 102, 255, 0.5)',
-                            'rgba(255, 99, 132, 0.5)'
-                        ],
-                        borderColor: [
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 99, 132, 1)'
-                        ],
-                        borderWidth: 1 // Border width of bars
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true, // Ensure Y-axis starts at zero
-                            ticks: {
-                                color: 'black' // Change Y-axis text color to black
+                // Create the chart
+                new Chart(ctx, {
+                    type: 'bar', // Chart type: 'bar', 'line', 'pie', etc.
+                    data: {
+                        labels: ['January', 'February', 'March', 'April', 'May'], // X-axis labels
+                        datasets: [{
+                            label: 'Sales in USD', // Dataset label
+                            data: [120, 150, 180, 100, 200], // Data points
+                            backgroundColor: [
+                                'rgba(75, 192, 192, 0.5)',
+                                'rgba(54, 162, 235, 0.5)',
+                                'rgba(255, 206, 86, 0.5)',
+                                'rgba(153, 102, 255, 0.5)',
+                                'rgba(255, 99, 132, 0.5)'
+                            ],
+                            borderColor: [
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 99, 132, 1)'
+                            ],
+                            borderWidth: 1 // Border width of bars
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true, // Ensure Y-axis starts at zero
+                                ticks: {
+                                    color: 'black' // Change Y-axis text color to black
+                                }
+                            },
+                            x: {
+                                ticks: {
+                                    color: 'black' // Change X-axis text color to black
+                                }
                             }
                         },
-                        x: {
-                            ticks: {
-                                color: 'black' // Change X-axis text color to black
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            labels: {
-                                color: 'black' // Change the legend label text color to black
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: 'black' // Change the legend label text color to black
+                                }
                             }
                         }
                     }
-                }
-            });
-        </script>
-    </div>
+                });
+            </script>
+        </div>
 
 
-    </div>
+        </div>
 
-    <!-- Third Container -->
-    <div class="album py-5 bg-body-tertiary">
-        <div class="container">
-            <h1 class="GalleryText">Gallery</h1>
+        <!-- Third Container -->
+        <div class="album py-5 bg-body-tertiary">
+            <div class="container">
+                <h1 class="GalleryText">Gallery</h1>
 
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                            preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                                dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                                preserveAspectRatio="xMidYMid slice" focusable="false">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
+                                    dy=".3em">Thumbnail</text>
+                            </svg>
+                            <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to
+                                    additional content. This content is a little bit longer.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    </div>
+
                                 </div>
-
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                            preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                                dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                                preserveAspectRatio="xMidYMid slice" focusable="false">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
+                                    dy=".3em">Thumbnail</text>
+                            </svg>
+                            <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to
+                                    additional content. This content is a little bit longer.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    </div>
 
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                            preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                                dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                                preserveAspectRatio="xMidYMid slice" focusable="false">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
+                                    dy=".3em">Thumbnail</text>
+                            </svg>
+                            <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to
+                                    additional content. This content is a little bit longer.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    </div>
 
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                            preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                                dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                                preserveAspectRatio="xMidYMid slice" focusable="false">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
+                                    dy=".3em">Thumbnail</text>
+                            </svg>
+                            <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to
+                                    additional content. This content is a little bit longer.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    </div>
+
                                 </div>
-
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                            preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                                dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                                preserveAspectRatio="xMidYMid slice" focusable="false">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
+                                    dy=".3em">Thumbnail</text>
+                            </svg>
+                            <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to
+                                    additional content. This content is a little bit longer.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    </div>
 
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                            preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                                dy=".3em">Thumbnail</text>
-                        </svg>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                                preserveAspectRatio="xMidYMid slice" focusable="false">
+                                <title>Placeholder</title>
+                                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
+                                    dy=".3em">Thumbnail</text>
+                            </svg>
+                            <div class="card-body">
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to
+                                    additional content. This content is a little bit longer.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    </div>
 
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
-    </div>
 
 
 
-    <!-- Fourth Container -->
-    <div class="container my-4">
-        <div class="container">
-            <h2>Overview</h2>
-            <div class="stats">
-                <div class="stat-box">
-                    <h3>Total Players:</h3>
-                    <p>--</p> <!-- Placeholder for empty stats -->
+        <!-- Fourth Container -->
+        <div class="container my-4">
+            <div class="container">
+                <h2>Overview</h2>
+                <div class="stats">
+                    <div class="stat-box">
+                        <h3>Total Players:</h3>
+                        <p>--</p> <!-- Placeholder for empty stats -->
+                    </div>
+                    <div class="stat-box">
+                        <h3>Active Players:</h3>
+                        <p>--</p> <!-- Placeholder for empty stats -->
+                    </div>
+                    <div class="stat-box">
+                        <h3>Average Score:</h3>
+                        <p>--</p> <!-- Placeholder for empty stats -->
+                    </div>
                 </div>
-                <div class="stat-box">
-                    <h3>Active Players:</h3>
-                    <p>--</p> <!-- Placeholder for empty stats -->
-                </div>
-                <div class="stat-box">
-                    <h3>Average Score:</h3>
-                    <p>--</p> <!-- Placeholder for empty stats -->
-                </div>
-            </div>
 
-            <div class="leaderboard">
-                <h2>Leader Board</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Rank</th>
-                            <th>Name</th>
-                            <th>Score</th>
-                            <th>Time</th>
-                            <th>Active Status</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>bobby1000</td>
-                            <td>670</td>
-                            <td>11min 10sec</td>
-                            <td class="active">Active</td>
-                            <td>11 Dec 2025</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>sammy1234</td>
-                            <td>654</td>
-                            <td>16min 8sec</td>
-                            <td class="active">Active</td>
-                            <td>9 Dec 2025</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>hello11111</td>
-                            <td>599</td>
-                            <td>9min 45sec</td>
-                            <td class="offline">Offline</td>
-                            <td>8 Dec 2025</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>hello0000</td>
-                            <td>456</td>
-                            <td>22min 1sec</td>
-                            <td class="active">Active</td>
-                            <td>6 Dec 2025</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>brian22</td>
-                            <td>321</td>
-                            <td>19min 22sec</td>
-                            <td class="offline">Offline</td>
-                            <td>13 Dec 2025</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>charsiew</td>
-                            <td>234</td>
-                            <td>13min 5sec</td>
-                            <td class="offline">Offline</td>
-                            <td>12 Dec 2025</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>banana</td>
-                            <td>123</td>
-                            <td>7min 15sec</td>
-                            <td class="active">Active</td>
-                            <td>4 Dec 2025</td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>blueberry</td>
-                            <td>23</td>
-                            <td>16min 10sec</td>
-                            <td class="offline">Offline</td>
-                            <td>1 Dec 2025</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="leaderboard">
+                    <h2>Leader Board</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Name</th>
+                                <th>Score</th>
+                                <th>Time</th>
+                                <th>Active Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>bobby1000</td>
+                                <td>670</td>
+                                <td>11min 10sec</td>
+                                <td class="active">Active</td>
+                                <td>11 Dec 2025</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>sammy1234</td>
+                                <td>654</td>
+                                <td>16min 8sec</td>
+                                <td class="active">Active</td>
+                                <td>9 Dec 2025</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>hello11111</td>
+                                <td>599</td>
+                                <td>9min 45sec</td>
+                                <td class="offline">Offline</td>
+                                <td>8 Dec 2025</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>hello0000</td>
+                                <td>456</td>
+                                <td>22min 1sec</td>
+                                <td class="active">Active</td>
+                                <td>6 Dec 2025</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>brian22</td>
+                                <td>321</td>
+                                <td>19min 22sec</td>
+                                <td class="offline">Offline</td>
+                                <td>13 Dec 2025</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>charsiew</td>
+                                <td>234</td>
+                                <td>13min 5sec</td>
+                                <td class="offline">Offline</td>
+                                <td>12 Dec 2025</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>banana</td>
+                                <td>123</td>
+                                <td>7min 15sec</td>
+                                <td class="active">Active</td>
+                                <td>4 Dec 2025</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>blueberry</td>
+                                <td>23</td>
+                                <td>16min 10sec</td>
+                                <td class="offline">Offline</td>
+                                <td>1 Dec 2025</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Fifth Container -->
-    <div class="container my-4">
-        <footer class="py-5">
-            <div class="row">
-                <div class="col-6 col-md-2 mb-3">
-                    <h5>Section</h5>
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a>
-                        </li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
-                        </li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a>
-                        </li>
+        <!-- Fifth Container -->
+        <div class="container my-4">
+            <footer class="py-5">
+                <div class="row">
+                    <div class="col-6 col-md-2 mb-3">
+                        <h5>Section</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-6 col-md-2 mb-3">
+                        <h5>Section</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-6 col-md-2 mb-3">
+                        <h5>Section</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-5 offset-md-1 mb-3">
+                        <form>
+                            <h5>Subscribe to our newsletter</h5>
+                            <p>Monthly digest of what's new and exciting from us.</p>
+                            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                                <label for="newsletter1" class="visually-hidden">Email address</label>
+                                <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+                                <button class="btn btn-primary" type="button">Subscribe</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+                    <p>&copy; 2024 HoloHands, Inc. All rights reserved.</p>
+                    <ul class="list-unstyled d-flex">
+                        <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24">
+                                    <use xlink:href="#twitter" />
+                                </svg></a></li>
+                        <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24">
+                                    <use xlink:href="#instagram" />
+                                </svg></a></li>
+                        <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24">
+                                    <use xlink:href="#facebook" />
+                                </svg></a></li>
                     </ul>
                 </div>
-
-                <div class="col-6 col-md-2 mb-3">
-                    <h5>Section</h5>
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a>
-                        </li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
-                        </li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="col-6 col-md-2 mb-3">
-                    <h5>Section</h5>
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a>
-                        </li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
-                        </li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="col-md-5 offset-md-1 mb-3">
-                    <form>
-                        <h5>Subscribe to our newsletter</h5>
-                        <p>Monthly digest of what's new and exciting from us.</p>
-                        <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-                            <label for="newsletter1" class="visually-hidden">Email address</label>
-                            <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
-                            <button class="btn btn-primary" type="button">Subscribe</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
-                <p>&copy; 2024 HoloHands, Inc. All rights reserved.</p>
-                <ul class="list-unstyled d-flex">
-                    <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24">
-                                <use xlink:href="#twitter" />
-                            </svg></a></li>
-                    <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24">
-                                <use xlink:href="#instagram" />
-                            </svg></a></li>
-                    <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24">
-                                <use xlink:href="#facebook" />
-                            </svg></a></li>
-                </ul>
-            </div>
-        </footer>
-    </div>
-</main>
+            </footer>
+        </div>
+    </main>
+</body>
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-<script type="module">
+<script>
     let mybutton = document.getElementById("myBtn1");
 
     // When the user scrolls down 20px from the top of the document, show the button
@@ -740,6 +750,9 @@
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
     }
+</script>
+
+<script type="module">
 
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
@@ -774,7 +787,7 @@
                     console.log("User data found:", user);
 
                     let sec = user.account_creation_date * 1000;
-                    let normalDate = new Date(sec).toLocaleString('en-GB', {timezone:'UTC'})
+                    let normalDate = new Date(sec).toLocaleString('en-GB', { timezone: 'UTC' })
 
                     // Display user profile information
                     document.getElementById('userProfile').innerHTML = ` 
@@ -795,14 +808,14 @@
     }
 
     onAuthStateChanged(auth, (user) => {
-    if (user) {
-        console.log("Authenticated user:", user);
-        loadUserProfile(user.email);
-    } else {
-        console.log("No user logged in");
-        w
-    }
-});
+        if (user) {
+            console.log("Authenticated user:", user);
+            loadUserProfile(user.email);
+        } else {
+            console.log("No user logged in");
+            w
+        }
+    });
 
 
 
