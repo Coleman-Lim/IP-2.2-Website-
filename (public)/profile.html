@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
 </head>
 
 <style>
@@ -114,70 +115,68 @@
                             href="#account-general">General</a>
                         <a class="list-group-item list-group-item-action" data-toggle="list"
                             href="#account-change-password">Change password</a>
-
-
-
-
                     </div>
                 </div>
                 <div class="col-md-9">
                     <div class="tab-content">
                         <div class="tab-pane fade active show" id="account-general">
                             <div class="card-body media align-items-center">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt
-                                    class="d-block ui-w-80">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="User Avatar"
+                                    class="d-block ui-w-80" id="avatar-preview">
                                 <div class="media-body ml-4">
-                                    <label class="btn btn-outline-primary">
-                                        Upload new photo
-                                        <input type="file" class="account-settings-fileinput">
-                                    </label> &nbsp;
-                                    <button type="button" class="btn btn-default md-btn-flat">Reset</button>
+                                    <button class="btn btn-outline-primary" id="upload-button">Upload new photo</button>
+                                    <input type="file" class="user-file" accept="image/jpeg, image/png, image/jpg"
+                                        id="file-path" hidden>
+                                    &nbsp;
+                                    <button type="button" class="btn btn-default md-btn-flat"
+                                        id="reset-btn">Reset</button>
                                     <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
                                 </div>
                             </div>
-                            <hr class="border-light m-0">
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label class="form-label">Username</label>
-                                    <input type="text" class="form-control mb-1">
-                                    
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">E-mail</label>
-                                    <input type="text" class="form-control mb-1">
-                                    <div class="alert alert-warning mt-3">
-                                        Your email is not confirmed. Please check your inbox.<br>
-                                        <a href="javascript:void(0)">Resend confirmation</a>
+                            <form id="changeUserDetails">
+                                <hr class="border-light m-0">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label class="form-label">Username</label>
+                                        <input type="text" id="inputUsername" class="form-control mb-1" value="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="form-label">Gender</label>
+                                        <input type="text" id="inputGender" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Race</label>
+                                        <input type="text" id="inputRace" class="form-control">
+                                    </div>
+                                    <div class="text-right mt-3">
+                                        <button type="submit" class="btn btn-primary">Save changes</button>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="form-label">Gender</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Race</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
+                            </form>
                         </div>
+
+
                         <div class="tab-pane fade" id="account-change-password">
-                            <div class="card-body pb-2">
-                                <div class="form-group">
-                                    <label class="form-label">Current password</label>
-                                    <input type="password" class="form-control">
+                            <form id="changePassword">
+                                <div class="card-body pb-2">
+                                    <div class="form-group">
+                                        <label class="form-label">Current Password</label>
+                                        <input type="password" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">New Password</label>
+                                        <input type="password" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Confirm New Password</label>
+                                        <input type="password" class="form-control">
+                                    </div>
+                                    <div class="text-right mt-3">
+                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="form-label">New password</label>
-                                    <input type="password" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Confirm new password</label>
-                                    <input type="password" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-right mt-3">
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -193,7 +192,7 @@
 
     </script>
 
-   
+
 
     <!-- Second Container -->
     <div class="album py-5 bg-body-tertiary">
@@ -435,7 +434,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
         import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
-        import { getDatabase, ref, get, query, orderByChild, equalTo, set } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+        import { getDatabase, ref, get, query, orderByChild, equalTo, set, update } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
 
 
         const firebaseConfig = {
@@ -453,40 +452,80 @@
         const auth = getAuth();
         const db = getDatabase();
 
-        function loadUserProfile(email) {
-            const userRef = ref(db, 'players');
-            const userQuery = query(userRef, orderByChild('email'), equalTo(email));
+        document.getElementById("changeUserDetails").addEventListener("submit", (e) => {
+            e.preventDefault();
 
-            get(userQuery)
-                .then(snapshot => {
-                    if (snapshot.exists()) {
-                        const userData = snapshot.val();
-                        const user = Object.values(userData)[0];
-                        console.log("User data found:", user);
+            const newUsername = document.getElementById("inputUsername").value.trim();
 
-                        // Display user profile information
-                        
-                    } else {
-                        console.log("No user found with this email.");
-                        
-                    }
-                })
-                .catch(error => {
-                    console.error("Error loading user data:", error);
-                    
-                });
-        }
+            const newGender = document.getElementById("inputGender").value.trim();
+            const newRace = document.getElementById("inputRace").value.trim();
 
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                console.log("Authenticated user:", user);
-                loadUserProfile(user.email);
-            } else {
-                console.log("No user logged in");
 
+            const user = auth.currentUser;
+            const updates = {};
+            let updateCount = 0;
+
+            if (newUsername) {
+                updates["username"] = newUsername;
+                updateCount++;
             }
+
+            if (newGender) {
+                updates["gender"] = newGender;
+                updateCount++;
+            }
+            if (newRace) {
+                updates["race"] = newRace;
+                updateCount++;
+            }
+
+            if (updateCount === 0) {
+                alert("No changes were made.");
+                return;
+            }
+
+            // Update Firebase once with all changes
+            update(ref(db, "players/" + user.uid), updates)
+                .then(() => {
+                    if (updateCount > 1) {
+                        alert("All user details updated successfully!");
+                    } else {
+                        alert("User detail updated successfully!");
+                    }
+                    document.getElementById("changeUserDetails").reset(); // Clear form
+                })
+                .catch((error) => {
+                    console.error("Error updating user data:", error);
+                });
+
+
+            window.updateUserData = updateUserData;
+        })
+
+        document.getElementById('upload-button').addEventListener('click', function () {
+            document.getElementById('file-path').click();
+        });
+
+        // Update the avatar preview on file selection
+        document.getElementById('file-path').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('avatar-preview').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                alert('Please select a valid image file.');
+            }
+        });
+
+        // Reset the avatar to the default image
+        document.getElementById('reset-btn').addEventListener('click', function () {
+            document.getElementById('avatar-preview').src = "https://bootdey.com/img/Content/avatar/avatar1.png";
+            document.getElementById('file-path').value = "";
         });
     </script>
 
-    
+
 </body>
