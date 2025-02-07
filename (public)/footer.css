@@ -1,22 +1,23 @@
 .footer {
-    background-color: #121212; /* Dark background color */
-    color: #ffffff; /* White text color */
-    padding: 20px 0;
+    background-color: #121212;
+    color: #ffffff;
+    padding: 70px 0;
+    margin-top:0;
 }
 
 .footer-content {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Ensure vertical alignment */
-    border-bottom: 1px solid #333; /* Light border for separation */
+    align-items: flex-start;
+    border-bottom: 1px solid #333;
     padding-bottom: 10px;
     margin-bottom: 10px;
 }
 
 .footer-left {
     display: flex;
-    align-items: center; /* Align social icons and logo */
-    gap: 15px; /* Adjust spacing as needed */
+    align-items: flex-start;
+    gap: 15px;
 }
 
 .footer-logo {
@@ -28,41 +29,77 @@
 
 .footer-social {
     display: flex;
-    align-items: center; /* Align icons vertically */
-    gap: 20px; /* Space between icons */
+    align-items: flex-start;
+    gap: 20px;
 }
 
 .footer-social a {
-    color: #ffffff; /* Icon color */
+    color: #ffffff;
     font-size: 20px;
     text-decoration: none;
-    margin: 0; /* Remove unwanted margins */
+    margin: 0;
     padding: 0;
+    transition: color 0.3s ease; /* Add a smooth transition for hover effect */
 }
 
 .footer-social a:hover {
-    color: #888; /* Lighter color on hover */
+    color: #888;
 }
 
 .footer-links {
     list-style: none;
     padding: 0;
     display: flex;
-    gap: 20px; /* Space between links */
-    margin: 0; /* Reset default margins */
+    gap: 20px;
+    margin: 0;
 }
 
 .footer-links li {
-    margin: 0; /* Remove extra space */
+    margin: 0;
     padding: 0;
 }
 
 .footer-links li a {
     color: #ffffff;
     text-decoration: none;
-    line-height: 1.5; /* Consistent line height */
+    line-height: 1.5;
+    transition: color 0.3s ease; /* Add a smooth transition for hover effect */
 }
 
 .footer-links li a:hover {
-    color: #888; /* Lighter color on hover */
+    color: #888;
+}
+
+
+/*  Styles for the container that wraps the footer (if you have one) */
+.container { /* Or whatever your container class is named */
+    max-width: 1200px; /* Adjust as needed */
+    margin: 0 auto;
+    padding: 0 20px; /* Add padding if needed */
+}
+
+
+/* Styles to make the footer stick to the bottom (fixed footer): */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0; /* Important: Remove default body margins */
+}
+
+main {
+    flex: 1; /* Makes main content take up available space */
+    padding-bottom: 100px; /* Adjust this value to match your footer's height */
+}
+
+footer { /* Or .footer if you prefer */
+    position: relative; /* Necessary for the pseudo-element */
+    margin-top: auto; /* Push the footer to the bottom */
+}
+
+footer::before {
+    content: "";
+    display: block;
+    height: 100px; /* Adjust this to match your footer's height */
+    margin-top: -100px; /* Negative margin to create space */
 }

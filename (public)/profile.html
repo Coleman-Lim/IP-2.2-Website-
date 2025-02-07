@@ -162,15 +162,15 @@
                                 <div class="card-body pb-2">
                                     <div class="form-group">
                                         <label class="form-label">Current Password</label>
-                                        <input type="password" class="form-control">
+                                        <input type="password" class="form-control" id = "inputPassword">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">New Password</label>
-                                        <input type="password" class="form-control">
+                                        <input type="password" class="form-control" id = "inputNewPassword">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Confirm New Password</label>
-                                        <input type="password" class="form-control">
+                                        <input type="password" class="form-control" id = "inputConfirmNewPassword">
                                     </div>
                                     <div class="text-right mt-3">
                                         <button type="submit" class="btn btn-primary">Save changes</button>
@@ -435,6 +435,7 @@
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
         import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
         import { getDatabase, ref, get, query, orderByChild, equalTo, set, update } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+        import { email }
 
 
         const firebaseConfig = {
@@ -525,6 +526,29 @@
             document.getElementById('avatar-preview').src = "https://bootdey.com/img/Content/avatar/avatar1.png";
             document.getElementById('file-path').value = "";
         });
+
+
+        document.getElementById("changePassword").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const email = document.getElementById("email").value;
+            const currentPassword = document.getElementById("inputPassword").value;
+            const newPassword = document.getElementById("inputNewPassword").value
+            const newConfirmedPassword = document.getElementById("inputNewConfirmPassword")
+
+            signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+                const user = userCredential.user;
+                console.log("User logged in:", user);
+                alert("Login successful!");
+
+                window.location.href = "Homepage.html";
+
+            })
+                .catch((error) => {
+                    console.error("Login error:", error.message);
+                    alert(`Error: ${error.message}`);
+                })
+        });
+
     </script>
 
 
