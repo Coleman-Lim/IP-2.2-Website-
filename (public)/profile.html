@@ -433,10 +433,8 @@
 
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
-        import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+        import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, updatePassword } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
         import { getDatabase, ref, get, query, orderByChild, equalTo, set, update } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
-        import { email }
-
 
         const firebaseConfig = {
             apiKey: "AIzaSyAXUldvOSdXM2ySevIf_Dt9WRkO_YPK-A0",
@@ -455,9 +453,7 @@
 
         document.getElementById("changeUserDetails").addEventListener("submit", (e) => {
             e.preventDefault();
-
             const newUsername = document.getElementById("inputUsername").value.trim();
-
             const newGender = document.getElementById("inputGender").value.trim();
             const newRace = document.getElementById("inputRace").value.trim();
 
@@ -527,29 +523,49 @@
             document.getElementById('file-path').value = "";
         });
 
-
         document.getElementById("changePassword").addEventListener("submit", (e) => {
             e.preventDefault();
-            const email = document.getElementById("email").value;
             const currentPassword = document.getElementById("inputPassword").value;
-            const newPassword = document.getElementById("inputNewPassword").value
-            const newConfirmedPassword = document.getElementById("inputNewConfirmPassword")
+            const newPassword = document.getElementById("inputNewPassword").value;
+            const newConfirmedPassword = document.getElementById("inputNewConfirmPassword");
+
+            const email = "";
+
+            function getCurrentPlayerData() {
+                const playerRef = ref(db, `players/${user.uid}`);
+                get(playerRef).then((snapshot) => {
+                    if(snapshot.exists()){
+                        console.log(snapshot)
+                        try{
+                            email = snapshot.child("email").val();
+                        }
+                        catch{
+                            console.log("read email failed")
+                        }
+                    }
+                })
+            }
 
             signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
                 const user = userCredential.user;
                 console.log("User logged in:", user);
-                alert("Login successful!");
 
-                window.location.href = "Homepage.html";
-
-            })
+                if (newPassword == newConfirmedPassword){
+                    updatePassword(user, newPassword).then(() => {
+                        alert("Password change successfull");
+                        }).catch((error) => {
+                        console.error("Change password error:", error.message);
+                    });
+                }
+                else{
+                    alert("Error: Confirm new password is not the same");
+                }
+                })
                 .catch((error) => {
                     console.error("Login error:", error.message);
-                    alert(`Error: ${error.message}`);
+                    alert(`Error: Current password is incorrect`);
                 })
+        
         });
-
     </script>
-
-
 </body>
