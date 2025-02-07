@@ -423,7 +423,7 @@
                     </div>
                     <div class="col">
                         <div class="card shadow-sm">
-                            <img src="images/placeholder.jpg" id="image2">
+                            <img src="images/placeholder.jpg" id=2>
                             <div class="card-body">
                                 <p class="card-text">This is a wider card with supporting text below as a natural
                                     lead-in to
@@ -440,7 +440,7 @@
                     </div>
                     <div class="col">
                         <div class="card shadow-sm">
-                            <img src="images/placeholder.jpg" id="image3">
+                            <img src="images/placeholder.jpg" id=3>
                             <div class="card-body">
                                 <p class="card-text">This is a wider card with supporting text below as a natural
                                     lead-in to
@@ -458,7 +458,7 @@
 
                     <div class="col">
                         <div class="card shadow-sm">
-                            <img src="images/placeholder.jpg" id="image4">
+                            <img src="images/placeholder.jpg" id=4>
                             <div class="card-body">
                                 <p class="card-text">This is a wider card with supporting text below as a natural
                                     lead-in to
@@ -475,7 +475,7 @@
                     </div>
                     <div class="col">
                         <div class="card shadow-sm">
-                            <img src="images/placeholder.jpg" id="image5">
+                            <img src="images/placeholder.jpg" id=5>
                             <div class="card-body">
                                 <p class="card-text">This is a wider card with supporting text below as a natural
                                     lead-in to
@@ -492,7 +492,7 @@
                     </div>
                     <div class="col">
                         <div class="card shadow-sm">
-                            <img src="images/placeholder.jpg" id="image6">
+                            <img src="images/placeholder.jpg" id=6>
                             <div class="card-body">
                                 <p class="card-text">This is a wider card with supporting text below as a natural
                                     lead-in to
@@ -774,31 +774,43 @@
     }
 
     function loadScreenshots(uid) {
-        const userRef = ref(db, `screenshots/${uid}`);
-        get(userRef).then((snapshot) => {
-            if (snapshot.exists()) {
-                console.log(snapshot)
-                try {
-                    const loopNumber = 1;
-                    snapshot.forEach((child) => {
-                        const screenshot = child.val();
+    const userRef = ref(db, `screenshots/${uid}`);
+    get(userRef).then((snapshot) => {
+        if (snapshot.exists()) {
+            console.log(snapshot);
+            try {
+                const ssArray = [];
 
-                        const idName = "" + loopNumber.toString();
-                        console.log(idName);
-                        document.getElementById(idName).src = screenshot.URL;
-                        loopNumber +=1;
-                        console.log(idName)
-                        
-                })
+                snapshot.forEach((child) => {
+                    const screenshot = child.val();
+                    console.log(screenshot.URL);
+                    ssArray.push({ URL: screenshot.URL });
+                });
+
+                const ssArrayReverse = ssArray.reverse();
+                console.log(ssArrayReverse);
+
+                for (let i = 0; i < ssArrayReverse.length; i++) { // Use '<' instead of '<='
+                    const idName = i + 1;
+                    console.log(idName);
+                    
+                    const imgElement = document.getElementById(idName);
+                    if (imgElement) {
+                        imgElement.src = ssArrayReverse[i].URL;
+                    } else {
+                        console.log(`Element with ID ${idName} not found.`);
+                    }
                 }
-                catch {
-                    console.log("Get Images failed")
-                }
+            } catch (error) {
+                console.log("Get Images failed", error);
             }
-        })
-
-
-    }
+        } else {
+            console.log("No screenshots found");
+        }
+    }).catch((error) => {
+        console.log("Error fetching data", error);
+    });
+}
 
 
 
