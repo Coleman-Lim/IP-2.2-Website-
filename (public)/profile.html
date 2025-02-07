@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
+    
 </head>
 
 <style>
@@ -451,6 +452,9 @@
         const auth = getAuth();
         const db = getDatabase();
 
+        const supabaseURL = 'https://mrjzpnoiqdnifempamof.supabase.co/'
+        const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1yanpwbm9pcWRuaWZlbXBhbW9mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc5NDYxMzEsImV4cCI6MjA1MzUyMjEzMX0.39LpnJhxYgOT6CbHPzj6tfbimiwmjmEiz6MfkUVWpPE"
+
         document.getElementById("changeUserDetails").addEventListener("submit", (e) => {
             e.preventDefault();
             const newUsername = document.getElementById("inputUsername").value.trim();
@@ -552,7 +556,7 @@
 
                 if (newPassword == newConfirmedPassword){
                     updatePassword(user, newPassword).then(() => {
-                        alert("Password change successfull");
+                        alert("Password change successful");
                         }).catch((error) => {
                         console.error("Change password error:", error.message);
                     });
