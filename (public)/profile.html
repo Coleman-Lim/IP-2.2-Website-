@@ -20,8 +20,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    
+
+
 </head>
 
 <style>
@@ -163,15 +163,15 @@
                                 <div class="card-body pb-2">
                                     <div class="form-group">
                                         <label class="form-label">Current Password</label>
-                                        <input type="password" class="form-control" id = "inputPassword">
+                                        <input type="password" class="form-control" id="inputPassword">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">New Password</label>
-                                        <input type="password" class="form-control" id = "inputNewPassword">
+                                        <input type="password" class="form-control" id="inputNewPassword">
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Confirm New Password</label>
-                                        <input type="password" class="form-control" id = "inputConfirmNewPassword">
+                                        <input type="password" class="form-control" id="inputConfirmNewPassword">
                                     </div>
                                     <div class="text-right mt-3">
                                         <button type="submit" class="btn btn-primary">Save changes</button>
@@ -203,12 +203,7 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <div class="col">
                     <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                            preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c" />
-                        </svg>
+                        <img src="images/placeholder.png" id=1>
                         <div class="card-body">
                             <p class="card-text">This is a wider card with supporting text below as a natural
                                 lead-in to
@@ -225,12 +220,7 @@
                 </div>
                 <div class="col">
                     <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                            preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c" />
-                        </svg>
+                        <img src="images/placeholder.png" id=2>
                         <div class="card-body">
                             <p class="card-text">This is a wider card with supporting text below as a natural
                                 lead-in to
@@ -247,12 +237,7 @@
                 </div>
                 <div class="col">
                     <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                            preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c" />
-                        </svg>
+                        <img src="images/placeholder.png" id=3>
                         <div class="card-body">
                             <p class="card-text">This is a wider card with supporting text below as a natural
                                 lead-in to
@@ -270,12 +255,7 @@
 
                 <div class="col">
                     <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                            preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c" />
-                        </svg>
+                        <img src="images/placeholder.png" id=4>
                         <div class="card-body">
                             <p class="card-text">This is a wider card with supporting text below as a natural
                                 lead-in to
@@ -292,12 +272,7 @@
                 </div>
                 <div class="col">
                     <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                            preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c" />
-                        </svg>
+                        <img src="images/placeholder.png" id=5>
                         <div class="card-body">
                             <p class="card-text">This is a wider card with supporting text below as a natural
                                 lead-in to
@@ -314,12 +289,7 @@
                 </div>
                 <div class="col">
                     <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                            preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#55595c" />
-                        </svg>
+                        <img src="images/placeholder.png" id=6>
                         <div class="card-body">
                             <p class="card-text">This is a wider card with supporting text below as a natural
                                 lead-in to
@@ -538,12 +508,12 @@
             function getCurrentPlayerData() {
                 const playerRef = ref(db, `players/${user.uid}`);
                 get(playerRef).then((snapshot) => {
-                    if(snapshot.exists()){
+                    if (snapshot.exists()) {
                         console.log(snapshot)
-                        try{
+                        try {
                             email = snapshot.child("email").val();
                         }
-                        catch{
+                        catch {
                             console.log("read email failed")
                         }
                     }
@@ -554,22 +524,73 @@
                 const user = userCredential.user;
                 console.log("User logged in:", user);
 
-                if (newPassword == newConfirmedPassword){
+                if (newPassword == newConfirmedPassword) {
                     updatePassword(user, newPassword).then(() => {
                         alert("Password change successful");
-                        }).catch((error) => {
+                    }).catch((error) => {
                         console.error("Change password error:", error.message);
                     });
                 }
-                else{
+                else {
                     alert("Error: Confirm new password is not the same");
                 }
-                })
+            })
                 .catch((error) => {
                     console.error("Login error:", error.message);
                     alert(`Error: Current password is incorrect`);
                 })
-        
+
         });
+
+        function loadScreenshots(uid) {
+            const userRef = ref(db, `screenshots/${uid}`);
+            get(userRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    console.log(snapshot);
+                    try {
+                        const ssArray = [];
+
+                        snapshot.forEach((child) => {
+                            const screenshot = child.val();
+                            console.log(screenshot.URL);
+                            ssArray.push({ URL: screenshot.URL });
+                        });
+
+                        const ssArrayReverse = ssArray.reverse();
+                        console.log(ssArrayReverse);
+
+                        for (let i = 0; i < ssArrayReverse.length; i++) { // Use '<' instead of '<='
+                            const idName = i + 1;
+                            console.log(idName);
+
+                            const imgElement = document.getElementById(idName);
+                            if (imgElement) {
+                                imgElement.src = ssArrayReverse[i].URL;
+                            } else {
+                                console.log(`Element with ID ${idName} not found.`);
+                            }
+                        }
+                    } catch (error) {
+                        console.log("Get Images failed", error);
+                    }
+                } else {
+                    console.log("No screenshots found");
+                }
+            }).catch((error) => {
+                console.log("Error fetching data", error);
+            });
+        }
+
+        onAuthStateChanged(auth, (user) => {
+        if (user) {
+            console.log("Authenticated user:", user);
+            
+            loadScreenshots(user.uid);
+        } else {
+            console.log("No user logged in");
+
+        }
+    });
+
     </script>
 </body>
