@@ -103,9 +103,32 @@
       display: block !important;
     }
 
+    @font-face {
+      font-family: 'sewalik';
+      src: url('font/selawikRegular.ttf') format('truetype'); /* Use the correct file path */
+    }
+
+    @font-face {
+      font-family: 'sewalikBold';
+      src: url('font/selawik.bold.ttf') format('truetype'); /* Use the correct file path */
+    }
+
+    @font-face {
+      font-family: 'sewalikSemiBold';
+      src: url('font/selawikSemibold.ttf') format('truetype'); /* Use the correct file path */
+    }
+
     body {
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: 'sewalik';
       font-size: 20px;
+    }
+
+    h1{
+      font-family: 'sewalikBold';
+    }
+
+    h2{
+      font-family: 'sewalikSemiBold';
     }
 
     #myBtn {
@@ -131,7 +154,7 @@
     body {
       margin: 0;
       padding: 0;
-      background-image: url('images/background2.jpg');
+      background-image: url('images/Background1.png');
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
@@ -196,24 +219,22 @@
           </svg>
           <div class="container">
             <div class="carousel-caption text-start">
-              <h1>Empowering voices through hands</h1>
+              <h1>Empowering Voices through Hands</h1>
               <p class="opacity-75">Learn about Singapore Sign Language with Mixed Reality.</p>
 
             </div>
           </div>
         </div>
         <div class="carousel-item">
-          <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-            <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
-          </svg>
+          <img src="images/terraingame.png" class="d-block w-100" alt="Unleash your Creativity">
           <div class="container">
             <div class="carousel-caption">
-              <h1>Another example headline.</h1>
+              <h1>Unleash your Creativity</h1>
               <p>Some representative placeholder content for the second slide of the carousel.</p>
             </div>
           </div>
         </div>
+        
         <div class="carousel-item">
           <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
@@ -258,62 +279,60 @@
 
       <div class="row featurette">
         <div class="col-md-7">
-          <h2 class="featurette-heading fw-normal lh-1">First featurette heading. <span
-              class="text-body-secondary">It’ll blow your mind.</span></h2>
-          <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose
-            here.</p>
+          <h2 class="featurette-heading fw-normal lh-1">HoloHands</h2>
+          <p class="lead">is a mixed reality game that aims to teach users the Singapore Sign Language (SgSL) alphabet through Mixed Reality.</p>
         </div>
         <div class="col-md-5">
-          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-            height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
-            preserveAspectRatio="xMidYMid slice" focusable="false">
-            <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" /><text x="50%" y="50%"
-              fill="var(--bs-secondary-color)" dy=".3em">500x500</text>
-          </svg>
+          <img src="images/logo.png" alt="Description of image" class="img-fluid mx-auto" width="300" height="300">
         </div>
       </div>
 
       <hr class="featurette-divider">
 
-      <div class="row featurette">
-        <div class="col-md-7 order-md-2">
-          <h2 class="featurette-heading fw-normal lh-1">Oh yeah, it’s that good. <span class="text-body-secondary">See
-              for yourself.</span></h2>
-          <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this
-            layout would work with some actual real-world content in place.</p>
-        </div>
-        <div class="col-md-5 order-md-1">
-          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-            height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
-            preserveAspectRatio="xMidYMid slice" focusable="false">
-            <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" /><text x="50%" y="50%"
-              fill="var(--bs-secondary-color)" dy=".3em">500x500</text>
-          </svg>
+      <div class="container mt-4">
+        <h2 class="fw-bold">3 Main Features:</h2>
+        <div class="row">
+          <div class="col-md-6">
+            <ol>
+              <li><strong>Learning Mode</strong></li>
+              <li><strong>Quiz Mode</strong></li>
+              <li><strong>Terrain Assembly Mode</strong></li>
+            </ol>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <p>Learn Alphabets, Numbers & Words</p>
+            <p>7 Modes of Difficulties!</p>
+            <p>Unleash your Creativity</p>
+          </div>
         </div>
       </div>
 
       <hr class="featurette-divider">
 
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading fw-normal lh-1">And lastly, this one. <span
-              class="text-body-secondary">Checkmate.</span></h2>
-          <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really
-            intended to be actually read, simply here to give you a better view of what this would look like with some
-            actual content. Your content.</p>
+      <div class="container mt-4">
+        <h2 class="fw-bold">2 Ways to Play</h2>
+        
+        <div class="row align-items-center mb-4">
+          <div class="col-md-5">
+            <img src="path-to-your-image1.png" class="img-fluid rounded shadow" alt="Passthrough Mode">
+          </div>
+          <div class="col-md-7">
+            <h4><strong>1. Passthrough Mode</strong></h4>
+            <p>Use your surroundings, integrate them into the experience for a more immersive interaction!</p>
+          </div>
         </div>
-        <div class="col-md-5">
-          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-            height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
-            preserveAspectRatio="xMidYMid slice" focusable="false">
-            <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" /><text x="50%" y="50%"
-              fill="var(--bs-secondary-color)" dy=".3em">500x500</text>
-          </svg>
+      
+        <div class="row align-items-center">
+          <div class="col-md-5">
+            <img src="images/virtual room.png" class="img-fluid rounded shadow" alt="Virtual Room">
+          </div>
+          <div class="col-md-7">
+            <h4><strong>2. Virtual Room</strong></h4>
+            <p>No space? No problem! Use our virtual 3D model room that offers an equally engaging experience in a compact, controlled environment.</p>
+          </div>
         </div>
       </div>
+      
 
       <hr class="featurette-divider">
 
