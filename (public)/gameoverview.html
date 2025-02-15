@@ -403,6 +403,17 @@
             min-width: 140px;
             /* Ensures button is large enough */
         }
+
+        
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .chart-container {
+            width: 80%;
+            margin: auto;
+        }
+    </style>
     </style>
     </style>
 </head>
@@ -461,14 +472,10 @@
         </div>
 
 
-        <!-- Second Container -->
-        <div class="container my-4">
-            <h2 class="text-center">Player Highscores</h2>
-            <div class="chart-container">
-                <canvas id="multiLineChart"></canvas>
-            </div>
-        </div>
-
+        <h2>Player Highscore</h2>
+    <div class="chart-container">
+        <canvas id="multiLineChart"></canvas>
+    </div>
 
 
 
@@ -708,6 +715,9 @@
                         <p><strong>Username:</strong> ${user.username}</p>
                         <p><strong>Email:</strong> ${user.email}</p>
                         <p><strong>Account Created:</strong> ${normalDate}</p>
+                        <p><strong>Gender:</strong> ${user.gender}</p>
+                        <p><strong>Race:</strong> ${user.race}</p>
+                    
                     `;
                     document.getElementById('username1').innerHTML = `Welcome, ${user.username}!`
                 } else {
@@ -839,148 +849,58 @@
     });
 
 
-    const ctx = document.getElementById('multiLineChart').getContext('2d');
-    // Create the chart
-    const lineChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-            datasets: [
-                {
-                    label: 'Alphabet-Game Score',
-                    data: [30, 50, 40, 60, 70, 50],
-                    borderColor: 'red',
-                    borderWidth: 2,
-                    fill: false,
-                    tension: 0.3
-                },
-                {
-                    label: 'Word-Game Score',
-                    data: [40, 60, 50, 70, 80, 60],
-                    borderColor: 'blue',
-                    borderWidth: 2,
-                    fill: false,
-                    tension: 0.3
-                },
-                {
-                    label: 'Number-Game Score',
-                    data: [50, 70, 60, 80, 90, 70],
-                    borderColor: 'green',
-                    borderWidth: 2,
-                    fill: false,
-                    tension: 0.3
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: { display: true }
-            },
-            scales: {
-                x: { title: { display: true, text: 'Time Stamp' } },
-                y: {
-                    title: { display: true, text: 'Score' },
-                    beginAtZero: true // Ensures the Y-axis starts from 0
-                }
+    document.addEventListener("DOMContentLoaded", function () {
+            const ctx = document.getElementById("multiLineChart").getContext("2d");
+
+            function getRandomData(points, max) {
+                return Array.from({ length: points }, () => Math.floor(Math.random() * max) + 1);
             }
-        }
-    });
 
-    async function updateChartWithWordGameScores() {
-        const wordGameRef = ref(db, 'word_game');
+            const labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-        try {
-            const snapshot = await get(wordGameRef);
-            if (snapshot.exists()) {
-                const wordGameData = snapshot.val();
-                let labels = [];
-                let scores = [];
-
-                // Iterate over player UIDs
-                for (let userId in wordGameData) {
-                    for (let timestamp in wordGameData[userId]) {
-                        labels.push(timestamp); // Store timestamps as labels
-                        scores.push(wordGameData[userId][timestamp].score || 0); // Store scores
+            new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: "Alphabet-Game Score",
+                            data: getRandomData(12, 100),
+                            borderColor: "red",
+                            backgroundColor: "rgba(255, 0, 0, 0.2)",
+                            borderWidth: 2,
+                            fill: true
+                        },
+                        {
+                            label: "Number-Game Score",
+                            data: getRandomData(12, 100),
+                            borderColor: "blue",
+                            backgroundColor: "rgba(0, 0, 255, 0.2)",
+                            borderWidth: 2,
+                            fill: true
+                        },
+                        {
+                            label: "Word-Game Score",
+                            data: getRandomData(12, 100),
+                            borderColor: "green",
+                            backgroundColor: "rgba(0, 255, 0, 0.2)",
+                            borderWidth: 2,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
-
-                // Update the chart with real data
-                lineChart.data.labels = labels;
-                lineChart.data.datasets[1].data = scores; // Update the blue line (Word-Game Score)
-                lineChart.update();
-            }
-        } catch (error) {
-            console.error("Error fetching word game scores:", error);
-        }
-    }
-
-    async function updateChartForCurrentUser() {
-        // Step 1: Get the logged-in user's UID
-        const user = auth.currentUser; // Assuming you're using Firebase Authentication
-        if (!user) {
-            console.error("No user logged in");
-            return;
-        }
-        const userId = user.uid; // Get the current user's unique UID
-
-        // Step 2: Reference each game mode
-        const wordGameRef = ref(db, `word_game/${userId}`);
-        const alphabetGameRef = ref(db, `alphabet_game/${userId}`);
-        const numberGameRef = ref(db, `number_game/${userId}`);
-
-        try {
-            // Step 3: Fetch the data for this user
-            const [wordSnapshot, alphabetSnapshot, numberSnapshot] = await Promise.all([
-                get(wordGameRef), get(alphabetGameRef), get(numberGameRef)
-            ]);
-
-            let labels = [];
-            let wordScores = [];
-            let alphabetScores = [];
-            let numberScores = [];
-
-            // Step 4: Process data for each game type
-            if (wordSnapshot.exists()) {
-                const wordData = wordSnapshot.val();
-                for (let timestamp in wordData) {
-                    labels.push(new Date(parseInt(timestamp) * 1000).toLocaleDateString()); // Convert timestamp
-                    wordScores.push(wordData[timestamp].score || 0);
-                }
-            }
-
-            if (alphabetSnapshot.exists()) {
-                const alphabetData = alphabetSnapshot.val();
-                for (let timestamp in alphabetData) {
-                    alphabetScores.push(alphabetData[timestamp].score || 0);
-                }
-            }
-
-            if (numberSnapshot.exists()) {
-                const numberData = numberSnapshot.val();
-                for (let timestamp in numberData) {
-                    numberScores.push(numberData[timestamp].score || 0);
-                }
-            }
-
-            // Step 5: Update the chart
-            lineChart.data.labels = labels; // Apply timestamps
-            lineChart.data.datasets[0].data = alphabetScores; // Red line (Alphabet-Game Score)
-            lineChart.data.datasets[1].data = wordScores; // Blue line (Word-Game Score)
-            lineChart.data.datasets[2].data = numberScores; // Green line (Number-Game Score)
-            lineChart.update();
-
-        } catch (error) {
-            console.error("Error fetching game scores:", error);
-        }
-    }
-
-    // Ensure the function runs after login
-    auth.onAuthStateChanged((user) => {
-        if (user) {
-            updateChartForCurrentUser();
-        }
-    });
+            });
+        });
+    </script>
 
 
 
