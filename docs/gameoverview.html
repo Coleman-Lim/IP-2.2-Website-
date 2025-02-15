@@ -1,0 +1,911 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+    <script src="../assets/js/color-modes.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.122.0">
+    <title>Main Page</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/dashboard/">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
+
+    <!-- Bootstrap Link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"
+        defer></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="navbar.css" rel="stylesheet">
+    <link href="gameoverview.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: white !important;
+            padding: 2rem;
+            border-radius: 0.5rem;
+        }
+
+        .stat-box {
+            background-color: white;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .text-green {
+            color: #28a745;
+        }
+
+        .body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+        }
+    
+
+        .chart-container {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+        }
+
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
+        .b-example-divider {
+            width: 100%;
+            height: 3rem;
+            background-color: rgba(0, 0, 0, .1);
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+
+        .b-example-vr {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 100vh;
+        }
+
+        .bi {
+            vertical-align: -.125em;
+            fill: currentColor;
+        }
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden;
+        }
+
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .btn-bd-primary {
+            --bd-violet-bg: #712cf9;
+            --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+            --bs-btn-font-weight: 600;
+            --bs-btn-color: var(--bs-white);
+            --bs-btn-bg: var(--bd-violet-bg);
+            --bs-btn-border-color: var(--bd-violet-bg);
+            --bs-btn-hover-color: var(--bs-white);
+            --bs-btn-hover-bg: #6528e0;
+            --bs-btn-hover-border-color: #6528e0;
+            --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+            --bs-btn-active-color: var(--bs-btn-hover-color);
+            --bs-btn-active-bg: #5a23c8;
+            --bs-btn-active-border-color: #5a23c8;
+        }
+
+        .bd-mode-toggle {
+            z-index: 1500;
+        }
+
+        .bd-mode-toggle .dropdown-menu .active .bi {
+            display: block !important;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('images/Background1.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 30px auto;
+
+        }
+
+        @font-face {
+            font-family: 'sewalik';
+            src: url('Font/sewalik') format('truetype'); 
+        }
+
+        @font-face {
+            font-family: 'sewalikBold';
+            src: url('Font/sewalikBold') format('truetype'); 
+        }
+
+        @font-face {
+            font-family: 'sewalikSemiBold';
+            src: url('Font/sewalikSemiBold') format('truetype'); 
+        }
+
+        body {
+            font-family: url('Font/sewalik');
+            font-size: 20px;
+        }
+
+        h1{
+            font-family: url('Font/sewalikBold');
+        }
+
+        h2{
+            font-family: url('Font/sewalikSemiBold');
+            margin-bottom: 20px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .stat-box {
+            flex: 1;
+            padding: 20px;
+            margin: 0 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-box h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .stat-box p {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0;
+            color: #999;
+            /* Placeholder for empty stats */
+        }
+
+        .leaderboard {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .leaderboard h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .leaderboard table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .leaderboard th,
+        .leaderboard td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .leaderboard th {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .leaderboard td {
+            font-size: 14px;
+        }
+
+        .leaderboard .active {
+            color: green;
+            font-weight: bold;
+        }
+
+        .leaderboard .offline {
+            color: red;
+            font-weight: bold;
+        }
+
+        .stats .stat-box:first-child {
+            margin-left: 0;
+        }
+
+        .stats .stat-box:last-child {
+            margin-right: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+        }
+
+        #myBtn1 {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: blue;
+            color: white;
+            cursor: pointer;
+            padding: 20px;
+            border-radius: 4px;
+        }
+
+        #myBtn1:hover {
+            background-color: #555;
+        }
+
+        .album {
+            background-color: transparent !important;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .stat-box {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .leaderboard-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: center !important;
+            /* Force center alignment */
+            vertical-align: middle;
+            /* Aligns vertically */
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            font-weight: bold;
+        }
+
+
+
+        .active {
+            color: green;
+            font-weight: bold;
+        }
+
+        .offline {
+            color: red;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1100px;
+        }
+
+        /* Gallery Header */
+        .GalleryText {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+
+
+
+        /* Card Styling */
+        .card {
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Image Styling */
+        .gallery-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-img:hover {
+            opacity: 0.85;
+        }
+
+        .d-flex {
+            display: flex;
+            gap: 15px;
+            /* Adds space between Overview and Dropdown */
+        }
+
+        .dropdown-toggle {
+            min-width: 140px;
+            /* Ensures button is large enough */
+        }
+
+        
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .chart-container {
+            width: 80%;
+            margin: auto;
+        }
+    </style>
+    </style>
+    </style>
+</head>
+
+<body>
+    <button onclick="topFunction()" id="myBtn1" title="Go to top">
+        <i class="fas fa-chevron-up"></i> </button>
+    <!-- Navbar Section -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="images/logo-image 2.png" alt="Logo" height="50">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true"></a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <button class="btn btn-outline-success" type="button" style="border: none;"
+                        onclick="window.location.href = 'profile.html'">
+                        <img src="images/profile pic white.jpg" alt="Profile"
+                            style="width: 50px; height: 50px; border-radius: 50%;">
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Section -->
+    <main>
+        <div class="container my-4">
+            <h1 class="WelcomeText"><span id="username1">___</span></h1>
+        </div>
+
+        <!-- First Container -->
+        <div class="container gradient-bg mt-5">
+            <h2 class="title">Your Statistics</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="stat-box1" id="userProfile"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <h2>Player Highscore</h2>
+    <div class="chart-container">
+        <canvas id="multiLineChart"></canvas>
+    </div>
+
+
+
+        <!-- Third Container -->
+        <div class="album py-5 bg-body-tertiary">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1 class="GalleryText">Recent Images</h1>
+                </div>
+
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <img src="images/placeholder.png" id="1" class="gallery-img">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <img src="images/placeholder.png" id="2" class="gallery-img">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <img src="images/placeholder.png" id="3" class="gallery-img">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <img src="images/placeholder.png" id="4" class="gallery-img">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <img src="images/placeholder.png" id="5" class="gallery-img">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <img src="images/placeholder.png" id="6" class="gallery-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Fourth Container -->
+
+        <div class="container my-4">
+            <div class="d-flex align-items-center">
+                <h2 class="mb-0">Overview</h2>
+                <div class="dropdown ms-3">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Gamemodes
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#" data-game-mode="word_game">Word Game</a>
+                        <a class="dropdown-item" href="#" data-game-mode="alphabet_game">Alphabet Game</a>
+                        <a class="dropdown-item" href="#" data-game-mode="number_game">Number Game</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats mt-3">
+                <div class="stat-box">
+                    <h3>Total Players:</h3>
+                    <p id="totalPlayers">--</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Active Players:</h3>
+                    <p id="activePlayers">--</p>
+                </div>
+            </div>
+
+            <div class="leaderboard">
+                <div class="leaderboard-header">
+                    <h2 id="leaderboardTitle">Leaderboard - Word Game</h2>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Name</th>
+                            <th>Score</th>
+                            <th>Active Status</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <!-- Fifth Container -->
+        <div class="container my-4">
+            <footer class="py-5">
+                <div class="row">
+                    <div class="col-6 col-md-2 mb-3">
+                        <h5>Section</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-6 col-md-2 mb-3">
+                        <h5>Section</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-6 col-md-2 mb-3">
+                        <h5>Section</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-5 offset-md-1 mb-3">
+                        <form>
+                            <h5>Subscribe to our newsletter</h5>
+                            <p>Monthly digest of what's new and exciting from us.</p>
+                            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                                <label for="newsletter1" class="visually-hidden">Email address</label>
+                                <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+                                <button class="btn btn-primary" type="button">Subscribe</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+                    <p>&copy; 2024 HoloHands, Inc. All rights reserved.</p>
+                    <ul class="list-unstyled d-flex">
+                        <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24">
+                                    <use xlink:href="#twitter" />
+                                </svg></a></li>
+                        <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24">
+                                    <use xlink:href="#instagram" />
+                                </svg></a></li>
+                        <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24">
+                                    <use xlink:href="#facebook" />
+                                </svg></a></li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
+    </main>
+</body>
+<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    let mybutton = document.getElementById("myBtn1");
+
+
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+
+<script type="module">
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
+    import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+    import { getDatabase, ref, get, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAXUldvOSdXM2ySevIf_Dt9WRkO_YPK-A0",
+        authDomain: "ip-holohands.firebaseapp.com",
+        databaseURL: "https://ip-holohands-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "ip-holohands",
+        storageBucket: "ip-holohands.firebasestorage.app",
+        messagingSenderId: "470348418514",
+        appId: "1:470348418514:web:c7c1e2fef3a74567088c0b",
+        measurementId: "G-TMVDP0CP36"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    const db = getDatabase();
+
+
+
+    function loadUserProfile(email) {
+        const userRef = ref(db, 'players');
+        const userQuery = query(userRef, orderByChild('email'), equalTo(email));
+
+        get(userQuery)
+            .then(snapshot => {
+                if (snapshot.exists()) {
+                    const userData = snapshot.val();
+                    const user = Object.values(userData)[0];
+                    console.log("User data found:", user);
+
+                    let sec = user.account_creation_date * 1000;
+                    let normalDate = new Date(sec).toLocaleString('en-GB', { timezone: 'UTC' })
+
+                    // Display user profile information
+                    document.getElementById('userProfile').innerHTML = ` 
+                        <p><strong>Username:</strong> ${user.username}</p>
+                        <p><strong>Email:</strong> ${user.email}</p>
+                        <p><strong>Account Created:</strong> ${normalDate}</p>
+                        <p><strong>Gender:</strong> ${user.gender}</p>
+                        <p><strong>Race:</strong> ${user.race}</p>
+                    
+                    `;
+                    document.getElementById('username1').innerHTML = `Welcome, ${user.username}!`
+                } else {
+                    console.log("No user found with this email.");
+                    document.getElementById('userProfile').innerHTML = "<p>User not found.</p>";
+                }
+            })
+            .catch(error => {
+                console.error("Error loading user data:", error);
+                document.getElementById('userProfile').innerHTML = "<p>Error loading user profile.</p>";
+            });
+    }
+
+    function loadScreenshots(uid) {
+        const userRef = ref(db, `screenshots/${uid}`);
+        get(userRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                console.log(snapshot);
+                try {
+                    const ssArray = [];
+
+                    snapshot.forEach((child) => {
+                        const screenshot = child.val();
+                        console.log(screenshot.URL);
+                        ssArray.push({ URL: screenshot.URL });
+                    });
+
+                    const ssArrayReverse = ssArray.reverse();
+                    console.log(ssArrayReverse);
+
+                    for (let i = 0; i < ssArrayReverse.length; i++) { // Use '<' instead of '<='
+                        const idName = i + 1;
+                        console.log(idName);
+
+                        const imgElement = document.getElementById(idName);
+                        if (imgElement) {
+                            imgElement.src = ssArrayReverse[i].URL;
+                        } else {
+                            console.log(`Element with ID ${idName} not found.`);
+                        }
+                    }
+                } catch (error) {
+                    console.log("Get Images failed", error);
+                }
+            } else {
+                console.log("No screenshots found");
+            }
+        }).catch((error) => {
+            console.log("Error fetching data", error);
+        });
+    }
+
+
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            console.log("Authenticated user:", user);
+            loadUserProfile(user.email);
+            loadScreenshots(user.uid);
+        } else {
+            console.log("No user logged in");
+
+        }
+    });
+
+
+
+
+    async function fetchLeaderboard(gameMode) {
+        const leaderboardRef = ref(db, gameMode);
+        const usersRef = ref(db, 'players');
+
+        const [leaderboardSnapshot, usersSnapshot] = await Promise.all([get(leaderboardRef), get(usersRef)]);
+
+        if (leaderboardSnapshot.exists() && usersSnapshot.exists()) {
+            const leaderboardData = leaderboardSnapshot.val();
+            const usersData = usersSnapshot.val();
+
+            let players = [];
+
+            for (let userId in leaderboardData) {
+                for (let gameId in leaderboardData[userId]) {
+                    let score = leaderboardData[userId][gameId].score || 0;
+                    let username = usersData[userId]?.username || "Unknown Player";
+                    let activeStatus = usersData[userId]?.active_status ? "Active" : "Offline";
+                    let date = usersData[userId]?.last_logged_in_time
+                        ? new Date(usersData[userId].last_logged_in_time * 1000).toLocaleDateString()
+                        : "Unknown";
+
+                    players.push({ username, score, activeStatus, date });
+                }
+            }
+
+            players.sort((a, b) => b.score - a.score);
+
+            // **New Code** - Count the total number of player UIDs under "players"
+            const totalPlayers = Object.keys(usersData).length;
+
+            // **Update the Total Players Count in HTML**
+            document.querySelector("#totalPlayers").textContent = totalPlayers;
+            document.querySelector("#activePlayers").textContent = players.filter(player => player.activeStatus === "Active").length;
+            document.querySelector("#leaderboardTitle").textContent = `Leaderboard - ${gameMode.replace("_", " ")}`;
+            document.querySelector(".leaderboard-header h2").textContent = `Leaderboard - ${gameMode.replace("_", " ").replace(/\b\w/g, c => c.toUpperCase())}`;
+
+            const tbody = document.querySelector(".leaderboard tbody");
+            tbody.innerHTML = "";
+            players.forEach((player, index) => {
+                const row = `<tr>
+                    <td>${index + 1}</td>
+                    <td>${player.username}</td>
+                    <td>${player.score}</td>
+                    <td class="${player.activeStatus.toLowerCase()}">${player.activeStatus}</td>
+                    <td>${player.date}</td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".dropdown-item").forEach(item => {
+            item.addEventListener("click", function (event) {
+                event.preventDefault();
+                const gameMode = this.getAttribute("data-game-mode");
+                fetchLeaderboard(gameMode);
+            });
+        });
+        fetchLeaderboard('word_game');
+    });
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+            const ctx = document.getElementById("multiLineChart").getContext("2d");
+
+            function getRandomData(points, max) {
+                return Array.from({ length: points }, () => Math.floor(Math.random() * max) + 1);
+            }
+
+            const labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+            new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: "Alphabet-Game Score",
+                            data: getRandomData(12, 100),
+                            borderColor: "red",
+                            backgroundColor: "rgba(255, 0, 0, 0.2)",
+                            borderWidth: 2,
+                            fill: true
+                        },
+                        {
+                            label: "Number-Game Score",
+                            data: getRandomData(12, 100),
+                            borderColor: "blue",
+                            backgroundColor: "rgba(0, 0, 255, 0.2)",
+                            borderWidth: 2,
+                            fill: true
+                        },
+                        {
+                            label: "Word-Game Score",
+                            data: getRandomData(12, 100),
+                            borderColor: "green",
+                            backgroundColor: "rgba(0, 255, 0, 0.2)",
+                            borderWidth: 2,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+
+
+
+
+
+</script>
+</body>
