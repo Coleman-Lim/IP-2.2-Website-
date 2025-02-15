@@ -275,6 +275,112 @@
         .album {
             background-color: transparent !important;
         }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .stat-box {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .leaderboard-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: center !important;
+            /* Force center alignment */
+            vertical-align: middle;
+            /* Aligns vertically */
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            font-weight: bold;
+        }
+
+
+
+        .active {
+            color: green;
+            font-weight: bold;
+        }
+
+        .offline {
+            color: red;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1100px;
+        }
+
+        /* Gallery Header */
+        .GalleryText {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+
+
+
+        /* Card Styling */
+        .card {
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Image Styling */
+        .gallery-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-img:hover {
+            opacity: 0.85;
+        }
+
+        .d-flex {
+            display: flex;
+            gap: 15px;
+            /* Adds space between Overview and Dropdown */
+        }
+
+        .dropdown-toggle {
+            min-width: 140px;
+            /* Ensures button is large enough */
+        }
+    </style>
     </style>
 </head>
 
@@ -334,288 +440,107 @@
 
         <!-- Second Container -->
         <div class="container my-4">
-            <h2 class="text-center">Example Bar Chart</h2>
+            <h2 class="text-center">Player Highscores</h2>
             <div class="chart-container">
-                <canvas id="myChart"></canvas>
+                <canvas id="multiLineChart"></canvas>
             </div>
-
-            <script>
-                // Get the canvas element
-                const ctx = document.getElementById('myChart').getContext('2d');
-
-                // Create the chart
-                new Chart(ctx, {
-                    type: 'bar', // Chart type: 'bar', 'line', 'pie', etc.
-                    data: {
-                        labels: ['January', 'February', 'March', 'April', 'May'], // X-axis labels
-                        datasets: [{
-                            label: 'Sales in USD', // Dataset label
-                            data: [120, 150, 180, 100, 200], // Data points
-                            backgroundColor: [
-                                'rgba(75, 192, 192, 0.5)',
-                                'rgba(54, 162, 235, 0.5)',
-                                'rgba(255, 206, 86, 0.5)',
-                                'rgba(153, 102, 255, 0.5)',
-                                'rgba(255, 99, 132, 0.5)'
-                            ],
-                            borderColor: [
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 99, 132, 1)'
-                            ],
-                            borderWidth: 1 // Border width of bars
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        scales: {
-                            y: {
-                                beginAtZero: true, // Ensure Y-axis starts at zero
-                                ticks: {
-                                    color: 'black' // Change Y-axis text color to black
-                                }
-                            },
-                            x: {
-                                ticks: {
-                                    color: 'black' // Change X-axis text color to black
-                                }
-                            }
-                        },
-                        plugins: {
-                            legend: {
-                                labels: {
-                                    color: 'black' // Change the legend label text color to black
-                                }
-                            }
-                        }
-                    }
-                });
-            </script>
         </div>
 
 
-        </div>
+
 
         <!-- Third Container -->
         <div class="album py-5 bg-body-tertiary">
             <div class="container">
-                <h1 class="GalleryText">Recents</h1>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1 class="GalleryText">Recent Images</h1>
+                </div>
 
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
                     <div class="col">
                         <div class="card shadow-sm">
-                            <img src="images/placeholder.png" id= 1>
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to
-                                    additional content. This content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-
-                                </div>
-                            </div>
+                            <img src="images/placeholder.png" id="1" class="gallery-img">
                         </div>
                     </div>
                     <div class="col">
                         <div class="card shadow-sm">
-                            <img src="images/placeholder.png" id=2>
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to
-                                    additional content. This content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-
-                                </div>
-                            </div>
+                            <img src="images/placeholder.png" id="2" class="gallery-img">
                         </div>
                     </div>
                     <div class="col">
                         <div class="card shadow-sm">
-                            <img src="images/placeholder.png" id=3>
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to
-                                    additional content. This content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="card shadow-sm">
-                            <img src="images/placeholder.png" id=4>
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to
-                                    additional content. This content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-
-                                </div>
-                            </div>
+                            <img src="images/placeholder.png" id="3" class="gallery-img">
                         </div>
                     </div>
                     <div class="col">
                         <div class="card shadow-sm">
-                            <img src="images/placeholder.png" id=5>
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to
-                                    additional content. This content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-
-                                </div>
-                            </div>
+                            <img src="images/placeholder.png" id="4" class="gallery-img">
                         </div>
                     </div>
                     <div class="col">
                         <div class="card shadow-sm">
-                            <img src="images/placeholder.png" id=6>
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to
-                                    additional content. This content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-
-                                </div>
-                            </div>
+                            <img src="images/placeholder.png" id="5" class="gallery-img">
                         </div>
                     </div>
-
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <img src="images/placeholder.png" id="6" class="gallery-img">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
 
 
         <!-- Fourth Container -->
+
         <div class="container my-4">
-            <div class="container">
-                <h2>Overview</h2>
-                <div class="stats">
-                    <div class="stat-box">
-                        <h3>Total Players:</h3>
-                        <p>--</p> <!-- Placeholder for empty stats -->
+            <div class="d-flex align-items-center">
+                <h2 class="mb-0">Overview</h2>
+                <div class="dropdown ms-3">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Gamemodes
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#" data-game-mode="word_game">Word Game</a>
+                        <a class="dropdown-item" href="#" data-game-mode="alphabet_game">Alphabet Game</a>
+                        <a class="dropdown-item" href="#" data-game-mode="number_game">Number Game</a>
                     </div>
-                    <div class="stat-box">
-                        <h3>Active Players:</h3>
-                        <p>--</p> <!-- Placeholder for empty stats -->
-                    </div>
-                    <div class="stat-box">
-                        <h3>Average Score:</h3>
-                        <p>--</p> <!-- Placeholder for empty stats -->
-                    </div>
-                </div>
-
-                <div class="leaderboard">
-                    <h2>Leader Board</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Rank</th>
-                                <th>Name</th>
-                                <th>Score</th>
-
-                                <th>Active Status</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>bobby1000</td>
-                                <td>670</td>
-
-                                <td class="active">Active</td>
-                                <td>11 Dec 2025</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>sammy1234</td>
-                                <td>654</td>
-
-                                <td class="active">Active</td>
-                                <td>9 Dec 2025</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>hello11111</td>
-                                <td>599</td>
-
-                                <td class="offline">Offline</td>
-                                <td>8 Dec 2025</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>hello0000</td>
-                                <td>456</td>
-
-                                <td class="active">Active</td>
-                                <td>6 Dec 2025</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>brian22</td>
-                                <td>321</td>
-
-                                <td class="offline">Offline</td>
-                                <td>13 Dec 2025</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>charsiew</td>
-                                <td>234</td>
-
-                                <td class="offline">Offline</td>
-                                <td>12 Dec 2025</td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>banana</td>
-                                <td>123</td>
-
-                                <td class="active">Active</td>
-                                <td>4 Dec 2025</td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>blueberry</td>
-                                <td>23</td>
-
-                                <td class="offline">Offline</td>
-                                <td>1 Dec 2025</td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
+
+            <div class="stats mt-3">
+                <div class="stat-box">
+                    <h3>Total Players:</h3>
+                    <p id="totalPlayers">--</p>
+                </div>
+                <div class="stat-box">
+                    <h3>Active Players:</h3>
+                    <p id="activePlayers">--</p>
+                </div>
+            </div>
+
+            <div class="leaderboard">
+                <div class="leaderboard-header">
+                    <h2 id="leaderboardTitle">Leaderboard - Word Game</h2>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Name</th>
+                            <th>Score</th>
+                            <th>Active Status</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
         </div>
+
 
         <!-- Fifth Container -->
         <div class="container my-4">
@@ -698,7 +623,7 @@
 <script>
     let mybutton = document.getElementById("myBtn1");
 
-    // When the user scrolls down 20px from the top of the document, show the button
+
     window.onscroll = function () { scrollFunction() };
 
     function scrollFunction() {
@@ -739,7 +664,7 @@
     const auth = getAuth();
     const db = getDatabase();
 
-    
+
 
     function loadUserProfile(email) {
         const userRef = ref(db, 'players');
@@ -774,43 +699,43 @@
     }
 
     function loadScreenshots(uid) {
-    const userRef = ref(db, `screenshots/${uid}`);
-    get(userRef).then((snapshot) => {
-        if (snapshot.exists()) {
-            console.log(snapshot);
-            try {
-                const ssArray = [];
+        const userRef = ref(db, `screenshots/${uid}`);
+        get(userRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                console.log(snapshot);
+                try {
+                    const ssArray = [];
 
-                snapshot.forEach((child) => {
-                    const screenshot = child.val();
-                    console.log(screenshot.URL);
-                    ssArray.push({ URL: screenshot.URL });
-                });
+                    snapshot.forEach((child) => {
+                        const screenshot = child.val();
+                        console.log(screenshot.URL);
+                        ssArray.push({ URL: screenshot.URL });
+                    });
 
-                const ssArrayReverse = ssArray.reverse();
-                console.log(ssArrayReverse);
+                    const ssArrayReverse = ssArray.reverse();
+                    console.log(ssArrayReverse);
 
-                for (let i = 0; i < ssArrayReverse.length; i++) { // Use '<' instead of '<='
-                    const idName = i + 1;
-                    console.log(idName);
-                    
-                    const imgElement = document.getElementById(idName);
-                    if (imgElement) {
-                        imgElement.src = ssArrayReverse[i].URL;
-                    } else {
-                        console.log(`Element with ID ${idName} not found.`);
+                    for (let i = 0; i < ssArrayReverse.length; i++) { // Use '<' instead of '<='
+                        const idName = i + 1;
+                        console.log(idName);
+
+                        const imgElement = document.getElementById(idName);
+                        if (imgElement) {
+                            imgElement.src = ssArrayReverse[i].URL;
+                        } else {
+                            console.log(`Element with ID ${idName} not found.`);
+                        }
                     }
+                } catch (error) {
+                    console.log("Get Images failed", error);
                 }
-            } catch (error) {
-                console.log("Get Images failed", error);
+            } else {
+                console.log("No screenshots found");
             }
-        } else {
-            console.log("No screenshots found");
-        }
-    }).catch((error) => {
-        console.log("Error fetching data", error);
-    });
-}
+        }).catch((error) => {
+            console.log("Error fetching data", error);
+        });
+    }
 
 
 
@@ -824,6 +749,219 @@
 
         }
     });
+
+
+
+
+    async function fetchLeaderboard(gameMode) {
+        const leaderboardRef = ref(db, gameMode);
+        const usersRef = ref(db, 'players');
+
+        const [leaderboardSnapshot, usersSnapshot] = await Promise.all([get(leaderboardRef), get(usersRef)]);
+
+        if (leaderboardSnapshot.exists() && usersSnapshot.exists()) {
+            const leaderboardData = leaderboardSnapshot.val();
+            const usersData = usersSnapshot.val();
+
+            let players = [];
+
+            for (let userId in leaderboardData) {
+                for (let gameId in leaderboardData[userId]) {
+                    let score = leaderboardData[userId][gameId].score || 0;
+                    let username = usersData[userId]?.username || "Unknown Player";
+                    let activeStatus = usersData[userId]?.active_status ? "Active" : "Offline";
+                    let date = usersData[userId]?.last_logged_in_time
+                        ? new Date(usersData[userId].last_logged_in_time * 1000).toLocaleDateString()
+                        : "Unknown";
+
+                    players.push({ username, score, activeStatus, date });
+                }
+            }
+
+            players.sort((a, b) => b.score - a.score);
+
+            // **New Code** - Count the total number of player UIDs under "players"
+            const totalPlayers = Object.keys(usersData).length;
+
+            // **Update the Total Players Count in HTML**
+            document.querySelector("#totalPlayers").textContent = totalPlayers;
+            document.querySelector("#activePlayers").textContent = players.filter(player => player.activeStatus === "Active").length;
+            document.querySelector("#leaderboardTitle").textContent = `Leaderboard - ${gameMode.replace("_", " ")}`;
+            document.querySelector(".leaderboard-header h2").textContent = `Leaderboard - ${gameMode.replace("_", " ").replace(/\b\w/g, c => c.toUpperCase())}`;
+
+            const tbody = document.querySelector(".leaderboard tbody");
+            tbody.innerHTML = "";
+            players.forEach((player, index) => {
+                const row = `<tr>
+                    <td>${index + 1}</td>
+                    <td>${player.username}</td>
+                    <td>${player.score}</td>
+                    <td class="${player.activeStatus.toLowerCase()}">${player.activeStatus}</td>
+                    <td>${player.date}</td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".dropdown-item").forEach(item => {
+            item.addEventListener("click", function (event) {
+                event.preventDefault();
+                const gameMode = this.getAttribute("data-game-mode");
+                fetchLeaderboard(gameMode);
+            });
+        });
+        fetchLeaderboard('word_game');
+    });
+
+
+    const ctx = document.getElementById('multiLineChart').getContext('2d');
+    // Create the chart
+    const lineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [
+                {
+                    label: 'Alphabet-Game Score',
+                    data: [30, 50, 40, 60, 70, 50],
+                    borderColor: 'red',
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.3
+                },
+                {
+                    label: 'Word-Game Score',
+                    data: [40, 60, 50, 70, 80, 60],
+                    borderColor: 'blue',
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.3
+                },
+                {
+                    label: 'Number-Game Score',
+                    data: [50, 70, 60, 80, 90, 70],
+                    borderColor: 'green',
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.3
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: true }
+            },
+            scales: {
+                x: { title: { display: true, text: 'Time Stamp' } },
+                y: {
+                    title: { display: true, text: 'Score' },
+                    beginAtZero: true // Ensures the Y-axis starts from 0
+                }
+            }
+        }
+    });
+
+    async function updateChartWithWordGameScores() {
+        const wordGameRef = ref(db, 'word_game');
+
+        try {
+            const snapshot = await get(wordGameRef);
+            if (snapshot.exists()) {
+                const wordGameData = snapshot.val();
+                let labels = [];
+                let scores = [];
+
+                // Iterate over player UIDs
+                for (let userId in wordGameData) {
+                    for (let timestamp in wordGameData[userId]) {
+                        labels.push(timestamp); // Store timestamps as labels
+                        scores.push(wordGameData[userId][timestamp].score || 0); // Store scores
+                    }
+                }
+
+                // Update the chart with real data
+                lineChart.data.labels = labels;
+                lineChart.data.datasets[1].data = scores; // Update the blue line (Word-Game Score)
+                lineChart.update();
+            }
+        } catch (error) {
+            console.error("Error fetching word game scores:", error);
+        }
+    }
+
+    async function updateChartForCurrentUser() {
+        // Step 1: Get the logged-in user's UID
+        const user = auth.currentUser; // Assuming you're using Firebase Authentication
+        if (!user) {
+            console.error("No user logged in");
+            return;
+        }
+        const userId = user.uid; // Get the current user's unique UID
+
+        // Step 2: Reference each game mode
+        const wordGameRef = ref(db, `word_game/${userId}`);
+        const alphabetGameRef = ref(db, `alphabet_game/${userId}`);
+        const numberGameRef = ref(db, `number_game/${userId}`);
+
+        try {
+            // Step 3: Fetch the data for this user
+            const [wordSnapshot, alphabetSnapshot, numberSnapshot] = await Promise.all([
+                get(wordGameRef), get(alphabetGameRef), get(numberGameRef)
+            ]);
+
+            let labels = [];
+            let wordScores = [];
+            let alphabetScores = [];
+            let numberScores = [];
+
+            // Step 4: Process data for each game type
+            if (wordSnapshot.exists()) {
+                const wordData = wordSnapshot.val();
+                for (let timestamp in wordData) {
+                    labels.push(new Date(parseInt(timestamp) * 1000).toLocaleDateString()); // Convert timestamp
+                    wordScores.push(wordData[timestamp].score || 0);
+                }
+            }
+
+            if (alphabetSnapshot.exists()) {
+                const alphabetData = alphabetSnapshot.val();
+                for (let timestamp in alphabetData) {
+                    alphabetScores.push(alphabetData[timestamp].score || 0);
+                }
+            }
+
+            if (numberSnapshot.exists()) {
+                const numberData = numberSnapshot.val();
+                for (let timestamp in numberData) {
+                    numberScores.push(numberData[timestamp].score || 0);
+                }
+            }
+
+            // Step 5: Update the chart
+            lineChart.data.labels = labels; // Apply timestamps
+            lineChart.data.datasets[0].data = alphabetScores; // Red line (Alphabet-Game Score)
+            lineChart.data.datasets[1].data = wordScores; // Blue line (Word-Game Score)
+            lineChart.data.datasets[2].data = numberScores; // Green line (Number-Game Score)
+            lineChart.update();
+
+        } catch (error) {
+            console.error("Error fetching game scores:", error);
+        }
+    }
+
+    // Ensure the function runs after login
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+            updateChartForCurrentUser();
+        }
+    });
+
+
+
+
 
 
 </script>

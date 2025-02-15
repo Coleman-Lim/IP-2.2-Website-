@@ -64,6 +64,52 @@
     #myBtn1:hover {
         background-color: #555;
     }
+
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        padding-top: 100px;
+        /* Location of the modal */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.9);
+        /* Black w/ opacity */
+    }
+
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+    }
+
+
+
+    .close:hover,
+    .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .modal-description {
+        text-align: center;
+        color: #fff;
+        font-size: 16px;
+        padding-top: 10px;
+    }
 </style>
 
 <body>
@@ -100,491 +146,479 @@
             </div>
         </div>
     </nav>
+    <main>
+        <div class="container my-4">
+            <h1 class="WelcomeText">User Profile</h1>
+        </div>
 
-    <div class="container my-4">
-        <h1 class="WelcomeText">User Profile</h1>
-    </div>
+        <!-- First Container -->
+        <div class="container light-style flex-grow-1 container-p-y">
 
-    <!-- First Container -->
-    <div class="container light-style flex-grow-1 container-p-y">
-
-        <div class="card overflow-hidden">
-            <div class="row no-gutters row-bordered row-border-light">
-                <div class="col-md-3 pt-0">
-                    <div class="list-group list-group-flush account-settings-links">
-                        <a class="list-group-item list-group-item-action active" data-toggle="list"
-                            href="#account-general">General</a>
-                        <a class="list-group-item list-group-item-action" data-toggle="list"
-                            href="#account-change-password">Change password</a>
-                    </div>
-                </div>
-                <div class="col-md-9">
-                    <div class="tab-content">
-                        <div class="tab-pane fade active show" id="account-general">
-                            <div class="card-body media align-items-center">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="User Avatar"
-                                    class="d-block ui-w-80" id="avatar-preview">
-                                <div class="media-body ml-4">
-                                    <button class="btn btn-outline-primary" id="upload-button">Upload new photo</button>
-                                    <input type="file" class="user-file" accept="image/jpeg, image/png, image/jpg"
-                                        id="file-path" hidden>
-                                    &nbsp;
-                                    <button type="button" class="btn btn-default md-btn-flat"
-                                        id="reset-btn">Reset</button>
-                                    <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
-                                </div>
-                            </div>
-                            <form id="changeUserDetails">
-                                <hr class="border-light m-0">
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <label class="form-label">Username</label>
-                                        <input type="text" id="inputUsername" class="form-control mb-1" value="">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="form-label">Gender</label>
-                                        <input type="text" id="inputGender" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Race</label>
-                                        <input type="text" id="inputRace" class="form-control">
-                                    </div>
-                                    <div class="text-right mt-3">
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                </div>
-                            </form>
+            <div class="card overflow-hidden">
+                <div class="row no-gutters row-bordered row-border-light">
+                    <div class="col-md-3 pt-0">
+                        <div class="list-group list-group-flush account-settings-links">
+                            <a class="list-group-item list-group-item-action active" data-toggle="list"
+                                href="#account-general">General</a>
+                            <a class="list-group-item list-group-item-action" data-toggle="list"
+                                href="#account-change-password">Change password</a>
                         </div>
-
-
-                        <div class="tab-pane fade" id="account-change-password">
-                            <form id="changePassword">
-                                <div class="card-body pb-2">
-                                    <div class="form-group">
-                                        <label class="form-label">Current Password</label>
-                                        <input type="password" class="form-control" id="inputPassword">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">New Password</label>
-                                        <input type="password" class="form-control" id="inputNewPassword">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Confirm New Password</label>
-                                        <input type="password" class="form-control" id="inputConfirmNewPassword">
-                                    </div>
-                                    <div class="text-right mt-3">
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="tab-content">
+                            <div class="tab-pane fade active show" id="account-general">
+                                <div class="card-body media align-items-center">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="User Avatar"
+                                        class="d-block ui-w-80" id="avatar-preview">
+                                    <div class="media-body ml-4">
+                                        <button class="btn btn-outline-primary" id="upload-button">Upload new
+                                            photo</button>
+                                        <input type="file" class="user-file" accept="image/jpeg, image/png, image/jpg"
+                                            id="file-path" hidden>
+                                        &nbsp;
+                                        <button type="button" class="btn btn-default md-btn-flat"
+                                            id="reset-btn">Reset</button>
+                                        <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K
+                                        </div>
                                     </div>
                                 </div>
-                            </form>
+                                <form id="changeUserDetails">
+                                    <hr class="border-light m-0">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label class="form-label">Username</label>
+                                            <input type="text" id="inputUsername" class="form-control mb-1" value="">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label">Gender</label>
+                                            <input type="text" id="inputGender" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Race</label>
+                                            <input type="text" id="inputRace" class="form-control">
+                                        </div>
+                                        <div class="text-right mt-3">
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+
+                            <div class="tab-pane fade" id="account-change-password">
+                                <form id="changePassword">
+                                    <div class="card-body pb-2">
+                                        <div class="form-group">
+                                            <label class="form-label">Current Password</label>
+                                            <input type="password" class="form-control" id="inputPassword">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">New Password</label>
+                                            <input type="password" class="form-control" id="inputNewPassword">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Confirm New Password</label>
+                                            <input type="password" class="form-control" id="inputConfirmNewPassword">
+                                        </div>
+                                        <div class="text-right mt-3">
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    </div>
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript">
+        </div>
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript">
 
-    </script>
-
+        </script>
 
 
-    <!-- Second Container -->
-    <div class="album py-5 bg-body-tertiary">
-        <div class="container">
-            <h1 class="GalleryText">Gallery</h1>
 
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="images/placeholder.png" id=1>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural
-                                lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
+        <!-- Second Container -->
+        <div id="imageModal" class="modal" onclick="closeModal(event)">
+            <img id="modalImage" class="modal-content" alt="Image">
+            <div id="modalDescription" class="modal-description"></div>
+        </div>
+        
+        <div class="album py-5 bg-body-tertiary">
+            <div class="container">
+                
+                <div class="d-flex align-items-center mb-3">
+                    <h1 class="GalleryText me-3">Gallery</h1> 
+                    <button id="refreshButton" class="btn btn-primary">Refresh</button> 
                 </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="images/placeholder.png" id=2>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural
-                                lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="images/placeholder.png" id=3>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural
-                                lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="images/placeholder.png" id=4>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural
-                                lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="images/placeholder.png" id=5>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural
-                                lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="images/placeholder.png" id=6>
-                        <div class="card-body">
-                            <p class="card-text">This is a wider card with supporting text below as a natural
-                                lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="gallery"></div>
             </div>
         </div>
-    </div>
+        
 
 
-    <div class="container">
-        <footer class="py-5">
-            <div class="row">
-                <div class="col-6 col-md-2 mb-3">
-                    <h5>Section</h5>
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+        <div class="container my-4">
+            <footer class="py-5">
+                <div class="row">
+                    <div class="col-6 col-md-2 mb-3">
+                        <h5>Section</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-6 col-md-2 mb-3">
+                        <h5>Section</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-6 col-md-2 mb-3">
+                        <h5>Section</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-5 offset-md-1 mb-3">
+                        <form>
+                            <h5>Subscribe to our newsletter</h5>
+                            <p>Monthly digest of what's new and exciting from us.</p>
+                            <div class="d-flex align-items-center gap-2 w-100"> <label for="newsletter1"
+                                    class="visually-hidden">Email address</label>
+                                <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+                                <button class="btn btn-primary" type="button">Subscribe</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+                    <p>&copy; 2024 HoloHands, Inc. All rights reserved.</p>
+                    <ul class="list-unstyled d-flex">
+                        <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24">
+                                    <use xlink:href="#twitter" />
+                                </svg></a></li>
+                        <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24">
+                                    <use xlink:href="#instagram" />
+                                </svg></a></li>
+                        <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24">
+                                    <use xlink:href="#facebook" />
+                                </svg></a></li>
                     </ul>
                 </div>
+            </footer>
+        </div>
 
-                <div class="col-6 col-md-2 mb-3">
-                    <h5>Section</h5>
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-6 col-md-2 mb-3">
-                    <h5>Section</h5>
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-md-5 offset-md-1 mb-3">
-                    <form>
-                        <h5>Subscribe to our newsletter</h5>
-                        <p>Monthly digest of what's new and exciting from us.</p>
-                        <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-                            <label for="newsletter1" class="visually-hidden">Email address</label>
-                            <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
-                            <button class="btn btn-primary" type="button">Subscribe</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
-                <p>&copy; 2024 HoloHands, Inc. All rights reserved.</p>
-                <ul class="list-unstyled d-flex">
-                    <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24">
-                                <use xlink:href="#twitter" />
-                            </svg></a></li>
-                    <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24">
-                                <use xlink:href="#instagram" />
-                            </svg></a></li>
-                    <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24">
-                                <use xlink:href="#facebook" />
-                            </svg></a></li>
-                </ul>
-            </div>
-        </footer>
-    </div>
+    </main>
+</body>
+<script>
+    let mybutton = document.getElementById("myBtn1");
 
 
-    <script>
-        let mybutton = document.getElementById("myBtn1");
+    window.onscroll = function () { scrollFunction() };
 
-        // When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function () { scrollFunction() };
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
 
-        function scrollFunction() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                mybutton.style.display = "block";
-            } else {
-                mybutton.style.display = "none";
-            }
+
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+
+
+</script>
+
+<script type="module">
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
+    import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, updatePassword } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+    import { getDatabase, ref, get, query, orderByChild, equalTo, set, update } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAXUldvOSdXM2ySevIf_Dt9WRkO_YPK-A0",
+        authDomain: "ip-holohands.firebaseapp.com",
+        databaseURL: "https://ip-holohands-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "ip-holohands",
+        storageBucket: "ip-holohands.firebasestorage.app",
+        messagingSenderId: "470348418514",
+        appId: "1:470348418514:web:c7c1e2fef3a74567088c0b",
+        measurementId: "G-TMVDP0CP36"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    const db = getDatabase();
+
+    const supabaseURL = 'https://mrjzpnoiqdnifempamof.supabase.co/'
+    const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1yanpwbm9pcWRuaWZlbXBhbW9mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc5NDYxMzEsImV4cCI6MjA1MzUyMjEzMX0.39LpnJhxYgOT6CbHPzj6tfbimiwmjmEiz6MfkUVWpPE"
+
+    document.getElementById("changeUserDetails").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const newUsername = document.getElementById("inputUsername").value.trim();
+        const newGender = document.getElementById("inputGender").value.trim();
+        const newRace = document.getElementById("inputRace").value.trim();
+
+
+        const user = auth.currentUser;
+        const updates = {};
+        let updateCount = 0;
+
+        if (newUsername) {
+            updates["username"] = newUsername;
+            updateCount++;
         }
 
-        // When the user clicks on the button, scroll to the top of the document
-        function topFunction() {
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
+        if (newGender) {
+            updates["gender"] = newGender;
+            updateCount++;
+        }
+        if (newRace) {
+            updates["race"] = newRace;
+            updateCount++;
         }
 
+        if (updateCount === 0) {
+            alert("No changes were made.");
+            return;
+        }
 
-    </script>
-
-    <script type="module">
-
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
-        import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, updatePassword } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
-        import { getDatabase, ref, get, query, orderByChild, equalTo, set, update } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyAXUldvOSdXM2ySevIf_Dt9WRkO_YPK-A0",
-            authDomain: "ip-holohands.firebaseapp.com",
-            databaseURL: "https://ip-holohands-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "ip-holohands",
-            storageBucket: "ip-holohands.firebasestorage.app",
-            messagingSenderId: "470348418514",
-            appId: "1:470348418514:web:c7c1e2fef3a74567088c0b",
-            measurementId: "G-TMVDP0CP36"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth();
-        const db = getDatabase();
-
-        const supabaseURL = 'https://mrjzpnoiqdnifempamof.supabase.co/'
-        const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1yanpwbm9pcWRuaWZlbXBhbW9mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc5NDYxMzEsImV4cCI6MjA1MzUyMjEzMX0.39LpnJhxYgOT6CbHPzj6tfbimiwmjmEiz6MfkUVWpPE"
-
-        document.getElementById("changeUserDetails").addEventListener("submit", (e) => {
-            e.preventDefault();
-            const newUsername = document.getElementById("inputUsername").value.trim();
-            const newGender = document.getElementById("inputGender").value.trim();
-            const newRace = document.getElementById("inputRace").value.trim();
-
-
-            const user = auth.currentUser;
-            const updates = {};
-            let updateCount = 0;
-
-            if (newUsername) {
-                updates["username"] = newUsername;
-                updateCount++;
-            }
-
-            if (newGender) {
-                updates["gender"] = newGender;
-                updateCount++;
-            }
-            if (newRace) {
-                updates["race"] = newRace;
-                updateCount++;
-            }
-
-            if (updateCount === 0) {
-                alert("No changes were made.");
-                return;
-            }
-
-            // Update Firebase once with all changes
-            update(ref(db, "players/" + user.uid), updates)
-                .then(() => {
-                    if (updateCount > 1) {
-                        alert("All user details updated successfully!");
-                    } else {
-                        alert("User detail updated successfully!");
-                    }
-                    document.getElementById("changeUserDetails").reset(); // Clear form
-                })
-                .catch((error) => {
-                    console.error("Error updating user data:", error);
-                });
-
-
-            window.updateUserData = updateUserData;
-        })
-
-        document.getElementById('upload-button').addEventListener('click', function () {
-            document.getElementById('file-path').click();
-        });
-
-        // Update the avatar preview on file selection
-        document.getElementById('file-path').addEventListener('change', function (event) {
-            const file = event.target.files[0];
-            if (file && file.type.startsWith('image/')) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    document.getElementById('avatar-preview').src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            } else {
-                alert('Please select a valid image file.');
-            }
-        });
-
-        // Reset the avatar to the default image
-        document.getElementById('reset-btn').addEventListener('click', function () {
-            document.getElementById('avatar-preview').src = "https://bootdey.com/img/Content/avatar/avatar1.png";
-            document.getElementById('file-path').value = "";
-        });
-
-        document.getElementById("changePassword").addEventListener("submit", (e) => {
-            e.preventDefault();
-            const currentPassword = document.getElementById("inputPassword").value;
-            const newPassword = document.getElementById("inputNewPassword").value;
-            const newConfirmedPassword = document.getElementById("inputNewConfirmPassword");
-
-            const email = "";
-
-            function getCurrentPlayerData() {
-                const playerRef = ref(db, `players/${user.uid}`);
-                get(playerRef).then((snapshot) => {
-                    if (snapshot.exists()) {
-                        console.log(snapshot)
-                        try {
-                            email = snapshot.child("email").val();
-                        }
-                        catch {
-                            console.log("read email failed")
-                        }
-                    }
-                })
-            }
-
-            signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
-                const user = userCredential.user;
-                console.log("User logged in:", user);
-
-                if (newPassword == newConfirmedPassword) {
-                    updatePassword(user, newPassword).then(() => {
-                        alert("Password change successful");
-                    }).catch((error) => {
-                        console.error("Change password error:", error.message);
-                    });
+        // Update Firebase once with all changes
+        update(ref(db, "players/" + user.uid), updates)
+            .then(() => {
+                if (updateCount > 1) {
+                    alert("All user details updated successfully!");
+                } else {
+                    alert("User detail updated successfully!");
                 }
-                else {
-                    alert("Error: Confirm new password is not the same");
+                document.getElementById("changeUserDetails").reset(); // Clear form
+            })
+            .catch((error) => {
+                console.error("Error updating user data:", error);
+            });
+
+
+        window.updateUserData = updateUserData;
+    })
+
+    document.getElementById('upload-button').addEventListener('click', function () {
+        document.getElementById('file-path').click();
+    });
+
+
+    document.getElementById('file-path').addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById('avatar-preview').src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert('Please select a valid image file.');
+        }
+    });
+
+
+    document.getElementById('reset-btn').addEventListener('click', function () {
+        document.getElementById('avatar-preview').src = "https://bootdey.com/img/Content/avatar/avatar1.png";
+        document.getElementById('file-path').value = "";
+    });
+
+    document.getElementById("changePassword").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const currentPassword = document.getElementById("inputPassword").value;
+        const newPassword = document.getElementById("inputNewPassword").value;
+        const newConfirmedPassword = document.getElementById("inputNewConfirmPassword");
+
+        const email = "";
+
+        function getCurrentPlayerData() {
+            const playerRef = ref(db, `players/${user.uid}`);
+            get(playerRef).then((snapshot) => {
+                if (snapshot.exists()) {
+                    console.log(snapshot)
+                    try {
+                        email = snapshot.child("email").val();
+                    }
+                    catch {
+                        console.log("read email failed")
+                    }
                 }
             })
-                .catch((error) => {
-                    console.error("Login error:", error.message);
-                    alert(`Error: Current password is incorrect`);
-                })
-
-        });
-
-        function loadScreenshots(uid) {
-            const userRef = ref(db, `screenshots/${uid}`);
-            get(userRef).then((snapshot) => {
-                if (snapshot.exists()) {
-                    console.log(snapshot);
-                    try {
-                        const ssArray = [];
-
-                        snapshot.forEach((child) => {
-                            const screenshot = child.val();
-                            console.log(screenshot.URL);
-                            ssArray.push({ URL: screenshot.URL });
-                        });
-
-                        const ssArrayReverse = ssArray.reverse();
-                        console.log(ssArrayReverse);
-
-                        for (let i = 0; i < ssArrayReverse.length; i++) { // Use '<' instead of '<='
-                            const idName = i + 1;
-                            console.log(idName);
-
-                            const imgElement = document.getElementById(idName);
-                            if (imgElement) {
-                                imgElement.src = ssArrayReverse[i].URL;
-                            } else {
-                                console.log(`Element with ID ${idName} not found.`);
-                            }
-                        }
-                    } catch (error) {
-                        console.log("Get Images failed", error);
-                    }
-                } else {
-                    console.log("No screenshots found");
-                }
-            }).catch((error) => {
-                console.log("Error fetching data", error);
-            });
         }
 
-        onAuthStateChanged(auth, (user) => {
+        signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+            const user = userCredential.user;
+            console.log("User logged in:", user);
+
+            if (newPassword == newConfirmedPassword) {
+                updatePassword(user, newPassword).then(() => {
+                    alert("Password change successful");
+                }).catch((error) => {
+                    console.error("Change password error:", error.message);
+                });
+            }
+            else {
+                alert("Error: Confirm new password is not the same");
+            }
+        })
+            .catch((error) => {
+                console.error("Login error:", error.message);
+                alert(`Error: Current password is incorrect`);
+            })
+
+    });
+
+    
+    function loadScreenshots(uid) {
+        const gallery = document.querySelector(".row.g-3");
+        gallery.innerHTML = "";
+
+        const userRef = ref(db, `screenshots/${uid}`);
+        get(userRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                console.log(snapshot);
+                try {
+                    const ssArray = [];
+
+                    snapshot.forEach((child) => {
+                        const screenshot = child.val();
+                        console.log(screenshot.URL);
+                        ssArray.push({ URL: screenshot.URL, description: screenshot.description || "No description available" });
+                    });
+
+                    const ssArrayReverse = ssArray.reverse();
+                    console.log(ssArrayReverse);
+
+                    
+                    for (let i = 0; i < ssArrayReverse.length; i++) {
+                        const screenshotData = ssArrayReverse[i];
+                        const cardHTML = `
+                        <div class="col" id="card-${i}">
+                            <div class="card shadow-sm">
+                                <img src="${screenshotData.URL}" alt="Screenshot" class="card-img-top" id="image-${i}">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group flex-column w-100">
+                                            <button type="button" class="btn btn-sm mb-2 w-100 btn-outline-secondary" id="view-btn-${i}">View</button>
+                                            <button type="button" class="btn btn-sm btn-danger w-100" id="delete-btn-${i}">Delete</button> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                        gallery.insertAdjacentHTML("beforeend", cardHTML);
+
+                        
+                        const viewButton = document.getElementById(`view-btn-${i}`);
+                        const deleteButton = document.getElementById(`delete-btn-${i}`);
+                        const image = document.getElementById(`image-${i}`);
+
+                        
+                        viewButton.addEventListener("click", () => {
+                            console.log(`View button clicked for image ${i}`);
+                            openModal(screenshotData.URL);
+                        });
+
+                        
+                        deleteButton.addEventListener("click", () => {
+                            const cardToDelete = document.getElementById(`card-${i}`);
+                            if (cardToDelete) {
+                                cardToDelete.remove();
+                                console.log(`Card ${i} deleted`);
+                            }
+                        });
+                    }
+                } catch (error) {
+                    console.log("Error processing data", error);
+                }
+            } else {
+                gallery.innerHTML = "<p>No images available.</p>";
+            }
+        }).catch((error) => {
+            console.log("Error fetching data", error);
+        });
+    }
+
+    
+    function openModal(imageURL) {
+        const modal = document.getElementById("imageModal");
+        const modalImage = document.getElementById("modalImage");
+        const modalDescription = document.getElementById("modalDescription");
+
+        modal.style.display = "block";
+        modalImage.src = imageURL;
+        modalDescription.textContent = "Click outside to close";
+    }
+
+    
+    function closeModal(event) {
+        event.stopPropagation();
+        const modal = document.getElementById("imageModal");
+        modal.style.display = "none";
+    }
+
+    
+    window.onclick = function (event) {
+        const modal = document.getElementById("imageModal");
+        if (event.target === modal) {
+            closeModal(event);
+        }
+    };
+
+    
+    document.getElementById("refreshButton").addEventListener("click", () => {
+        loadScreenshots(userId); 
+    });
+
+    
+    setInterval(() => {
+        loadScreenshots(userId);
+    }, 5000); 
+
+
+
+
+    onAuthStateChanged(auth, (user) => {
         if (user) {
             console.log("Authenticated user:", user);
-            
+
             loadScreenshots(user.uid);
         } else {
             console.log("No user logged in");
@@ -592,5 +626,4 @@
         }
     });
 
-    </script>
-</body>
+</script>
