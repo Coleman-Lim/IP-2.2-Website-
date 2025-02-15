@@ -56,7 +56,7 @@
             font-family: Arial, sans-serif;
             margin: 2rem;
         }
-    
+
 
         .chart-container {
             font-family: Arial, sans-serif;
@@ -147,7 +147,7 @@
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
-            
+
         }
 
         .container {
@@ -159,17 +159,17 @@
 
         @font-face {
             font-family: 'sewalik';
-            src: url('Font/sewalik') format('truetype'); 
+            src: url('Font/sewalik') format('truetype');
         }
 
         @font-face {
             font-family: 'sewalikBold';
-            src: url('Font/sewalikBold') format('truetype'); 
+            src: url('Font/sewalikBold') format('truetype');
         }
 
         @font-face {
             font-family: 'sewalikSemiBold';
-            src: url('Font/sewalikSemiBold') format('truetype'); 
+            src: url('Font/sewalikSemiBold') format('truetype');
         }
 
         body {
@@ -177,11 +177,11 @@
             font-size: 20px;
         }
 
-        h1{
+        h1 {
             font-family: url('Font/sewalikBold');
         }
 
-        h2{
+        h2 {
             font-family: url('Font/sewalikSemiBold');
             margin-bottom: 20px;
         }
@@ -403,17 +403,6 @@
             min-width: 140px;
             /* Ensures button is large enough */
         }
-
-        
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        .chart-container {
-            width: 80%;
-            margin: auto;
-        }
-    </style>
     </style>
     </style>
 </head>
@@ -472,10 +461,14 @@
         </div>
 
 
-        <h2>Player Highscore</h2>
-    <div class="chart-container">
-        <canvas id="multiLineChart"></canvas>
-    </div>
+        <!-- Second Container -->
+        <div class="container my-4">
+            <h2 class="text-center">Player Highscores</h2>
+            <div class="chart-container">
+                <canvas id="multiLineChart"></canvas>
+            </div>
+        </div>
+
 
 
 
@@ -849,59 +842,119 @@
     });
 
 
-    document.addEventListener("DOMContentLoaded", function () {
-            const ctx = document.getElementById("multiLineChart").getContext("2d");
+    const ctx = document.getElementById('multiLineChart').getContext('2d');
+    // Create the chart
+    const lineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [
+                {
+                    label: 'Alphabet-Game Score',
+                    data: [30, 50, 40, 60, 70, 50],
+                    borderColor: 'red',
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.3
+                },
+                {
+                    label: 'Word-Game Score',
+                    data: [40, 60, 50, 70, 80, 60],
+                    borderColor: 'blue',
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.3
+                },
+                {
+                    label: 'Number-Game Score',
+                    data: [50, 70, 60, 80, 90, 70],
+                    borderColor: 'green',
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.3
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: true }
+            },
+            scales: {
+                x: { title: { display: true, text: 'Time Stamp' } },
+                y: {
+                    title: { display: true, text: 'Score' },
+                    beginAtZero: true // Ensures the Y-axis starts from 0
+                }
+            }
+        }
+    });
 
-            function getRandomData(points, max) {
-                return Array.from({ length: points }, () => Math.floor(Math.random() * max) + 1);
+    async function updateGameCharts() {
+        const user = auth.currentUser;
+        if (!user) {
+            console.error("No user logged in");
+            return;
+        }
+
+        const userId = user.uid;
+        const gameModes = {
+            'alphabet_game': { index: 0, color: 'red' },  // Red Line
+            'word_game': { index: 1, color: 'blue' },      // Blue Line
+            'number_game': { index: 2, color: 'green' }    // Green Line
+        };
+
+        try {
+            let updatedLabels = [];
+            let datasets = [[], [], []]; // Store scores for each game mode
+
+            for (const [gameMode, config] of Object.entries(gameModes)) {
+                const gameRef = ref(db, `${gameMode}/${userId}`);
+                const snapshot = await get(gameRef);
+
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    let timestamps = [];
+
+                    // Extract timestamps and scores
+                    for (let timestamp in data) {
+                        timestamps.push(Number(timestamp)); // Convert timestamp to number
+                    }
+
+                    // Sort timestamps in ascending order
+                    timestamps.sort((a, b) => a - b);
+
+                    // Convert timestamps to readable dates
+                    const labels = timestamps.map(ts => new Date(ts * 1000).toLocaleDateString());
+
+                    // Update global labels only if this game mode has the most timestamps
+                    if (labels.length > updatedLabels.length) {
+                        updatedLabels = labels;
+                    }
+
+                    // Map sorted timestamps to their corresponding scores
+                    datasets[config.index] = timestamps.map(ts => data[ts].score || 0);
+                }
             }
 
-            const labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            // Update the chart with the latest data
+            lineChart.data.labels = updatedLabels;
+            lineChart.data.datasets[0].data = datasets[0]; // Alphabet Game (Red)
+            lineChart.data.datasets[1].data = datasets[1]; // Word Game (Blue)
+            lineChart.data.datasets[2].data = datasets[2]; // Number Game (Green)
 
-            new Chart(ctx, {
-                type: "line",
-                data: {
-                    labels: labels,
-                    datasets: [
-                        {
-                            label: "Alphabet-Game Score",
-                            data: getRandomData(12, 100),
-                            borderColor: "red",
-                            backgroundColor: "rgba(255, 0, 0, 0.2)",
-                            borderWidth: 2,
-                            fill: true
-                        },
-                        {
-                            label: "Number-Game Score",
-                            data: getRandomData(12, 100),
-                            borderColor: "blue",
-                            backgroundColor: "rgba(0, 0, 255, 0.2)",
-                            borderWidth: 2,
-                            fill: true
-                        },
-                        {
-                            label: "Word-Game Score",
-                            data: getRandomData(12, 100),
-                            borderColor: "green",
-                            backgroundColor: "rgba(0, 255, 0, 0.2)",
-                            borderWidth: 2,
-                            fill: true
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        });
-    </script>
+            lineChart.update(); // Refresh the chart
+        } catch (error) {
+            console.error("Error fetching game scores:", error);
+        }
+    }
 
+    // Run function when user logs in
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+            updateGameCharts();
+        }
+    });
 
 
 
