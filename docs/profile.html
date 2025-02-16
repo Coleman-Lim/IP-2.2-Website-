@@ -212,7 +212,7 @@
                                         <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K
                                         </div>
 
-                                        
+
                                         <a href="index.html" class="btn btn-outline-success ms-auto" role="button">Log
                                             Out</a>
                                     </div>
@@ -402,7 +402,7 @@
 
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
-    import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, updatePassword } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+    import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, updatePassword, EmailAuthProvider, reauthenticateWithCredential } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
     import { getDatabase, ref, get, query, orderByChild, equalTo, set, update } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
 
     const firebaseConfig = {
@@ -419,6 +419,7 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth();
     const db = getDatabase();
+
 
     const supabaseURL = 'https://mrjzpnoiqdnifempamof.supabase.co/'
     const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1yanpwbm9pcWRuaWZlbXBhbW9mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc5NDYxMzEsImV4cCI6MjA1MzUyMjEzMX0.39LpnJhxYgOT6CbHPzj6tfbimiwmjmEiz6MfkUVWpPE"
@@ -495,50 +496,7 @@
         document.getElementById('file-path').value = "";
     });
 
-    document.getElementById("changePassword").addEventListener("submit", (e) => {
-        e.preventDefault();
-        const currentPassword = document.getElementById("inputPassword").value;
-        const newPassword = document.getElementById("inputNewPassword").value;
-        const newConfirmedPassword = document.getElementById("inputNewConfirmPassword");
 
-        const email = "";
-
-        function getCurrentPlayerData() {
-            const playerRef = ref(db, `players/${user.uid}`);
-            get(playerRef).then((snapshot) => {
-                if (snapshot.exists()) {
-                    console.log(snapshot)
-                    try {
-                        email = snapshot.child("email").val();
-                    }
-                    catch {
-                        console.log("read email failed")
-                    }
-                }
-            })
-        }
-
-        signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
-            const user = userCredential.user;
-            console.log("User logged in:", user);
-
-            if (newPassword == newConfirmedPassword) {
-                updatePassword(user, newPassword).then(() => {
-                    alert("Password change successful");
-                }).catch((error) => {
-                    console.error("Change password error:", error.message);
-                });
-            }
-            else {
-                alert("Error: Confirm new password is not the same");
-            }
-        })
-            .catch((error) => {
-                console.error("Login error:", error.message);
-                alert(`Error: Current password is incorrect`);
-            })
-
-    });
 
 
     function loadScreenshots(uid) {
@@ -662,4 +620,46 @@
         }
     });
 
+    // Initialize Firebase
+
+    // Handle form submission
+    document.getElementById("changePassword").addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const currentPassword = document.getElementById("inputPassword").value;
+        const newPassword = document.getElementById("inputNewPassword").value;
+        const confirmPassword = document.getElementById("inputConfirmNewPassword").value;
+
+        if (newPassword !== confirmPassword) {
+            alert("New password and confirmation do not match.");
+            return;
+        }
+
+        const user = auth.currentUser;
+
+        if (!user) {
+            alert("No user is logged in.");
+            return;
+        }
+
+        try {
+            
+            const credential = EmailAuthProvider.credential(user.email, currentPassword);
+            await reauthenticateWithCredential(user, credential);
+
+           
+            await updatePassword(user, newPassword);
+            alert("Password changed successfully!");
+
+            
+            auth.signOut().then(() => {
+                alert("Password updated. Please log in again.");
+                window.location.href = "sign in.html"; 
+            });
+
+        } catch (error) {
+            console.error("Error changing password:", error);
+            alert(error.message);
+        }
+    });
 </script>
