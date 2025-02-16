@@ -163,6 +163,37 @@
       background-position: center;
 
     }
+    .feature-container {
+    background: #f8f9fa; /* Light gray background */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .feature-title {
+    color: #007bff; /* Bootstrap primary blue */
+    font-size: 24px;
+  }
+
+  .feature-list li {
+    font-size: 18px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+  }
+
+  .feature-list li::before {
+    content: "✔"; /* Checkmark icon */
+    color: #28a745;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  .feature-text {
+    font-size: 16px;
+    font-style: italic;
+    color: #555;
+  }
   </style>
 
 
@@ -292,28 +323,29 @@
       <hr class="featurette-divider">
 
       <div class="container mt-5">
-        <h2 class="fw-bold mb-4">3 Main Features</h2>
-        <div class="row">
-          <div class="col-md-6">
-            <ol class="list-unstyled">
-              <li><strong>Learning Mode</strong></li>
-              <li><strong>Quiz Mode</strong></li>
-              <li><strong>Terrain Assembly Mode</strong></li>
-            </ol>
-          </div>
-          <div class="col-md-6 text-md-end">
-            <p>Learn Alphabets, Numbers & Words</p>
-            <p>7 Modes of Difficulties!</p>
-            <p>Unleash your Creativity</p>
+        <div class="feature-container">
+          <h2 class="feature-title fw-bold mb-4 text-center">3 Main Features</h2>
+          <div class="row">
+            <div class="col-md-6">
+              <ol class="list-unstyled feature-list">
+                <li><strong>Learning Mode</strong></li>
+                <li><strong>Quiz Mode</strong></li>
+                <li><strong>Terrain Assembly Mode</strong></li>
+              </ol>
+            </div>
+            <div class="col-md-6 text-md-end">
+              <p class="feature-text">Learn Alphabets, Numbers & Words</p>
+              <p class="feature-text">7 Modes of Difficulties!</p>
+              <p class="feature-text">Unleash your Creativity</p>
+            </div>
           </div>
         </div>
       </div>
-      
       <hr class="featurette-divider">
-      
+
       <div class="container mt-5">
         <h2 class="fw-bold mb-4">2 Ways to Play</h2>
-      
+
         <div class="row align-items-center mb-4">
           <div class="col-md-5 mb-3 mb-md-0">
             <img src="images/passthrough.png" class="img-fluid rounded shadow" alt="Passthrough Mode">
@@ -323,18 +355,19 @@
             <p>Use your surroundings, integrate them into the experience for a more immersive interaction!</p>
           </div>
         </div>
-      
+
         <div class="row align-items-center">
           <div class="col-md-5 mb-3 mb-md-0">
             <img src="images/virtual room.png" class="img-fluid rounded shadow" alt="Virtual Room">
           </div>
           <div class="col-md-7">
             <h4 class="fw-bold">2. Virtual Room</h4>
-            <p>No space? No problem! Use our virtual 3D model room that offers an equally engaging experience in a compact, controlled environment.</p>
+            <p>No space? No problem! Use our virtual 3D model room that offers an equally engaging experience in a
+              compact, controlled environment.</p>
           </div>
         </div>
       </div>
-      
+
 
 
       <hr class="featurette-divider">
