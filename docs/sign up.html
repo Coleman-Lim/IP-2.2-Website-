@@ -70,6 +70,13 @@
                                 <input type="password" class="form-control" id="signUpPassword"
                                     placeholder="Enter your password" required>
                             </div>
+
+                            <div class="mb-3">
+                                <label for="age" class="form-label">Age</label>
+                                <input type="age" class="form-control" id="signUpAge" placeholder="Enter your Age"
+                                    required>
+                            </div>
+
                             <div class="select-menu">
                                 <div class="select-btn">
                                     <span class="sBtn-text">Gender</span>
@@ -92,27 +99,7 @@
                                 </ul>
                             </div>
 
-                            <div class="select-menu1">
-                                <div class="select-btn1">
-                                    <span class="sBtn-text1">Race</span>
-                                    <i class="bx bx-chevron-down"></i>
-                                </div>
-
-                                <ul class="options1">
-                                    <li class="option1">
-                                        <span class="option-text1">Chinese</span>
-                                    </li>
-                                    <li class="option1">
-                                        <span class="option-text1">Malay</span>
-                                    </li>
-                                    <li class="option1">
-                                        <span class="option-text1">Indian</span>
-                                    </li>
-                                    <li class="option1">
-                                        <span class="option-text1">Others</span>
-                                    </li>
-                                </ul>
-                            </div>
+                            
 
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-primary">Create Account</button>
@@ -186,9 +173,10 @@
             const username = document.getElementById("signUpUsername").value;
             const email = document.getElementById("signUpEmail").value;
             const password = document.getElementById("signUpPassword").value;
+            const age = document.getElementById("signUpAge").value;
 
             const selectedOption = document.querySelector(".sBtn-text").innerText;
-            const selectedOption1 = document.querySelector(".sBtn-text1").innerText;
+            
 
 
             createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
@@ -207,7 +195,7 @@
                     last_logged_in_time: unixTimestamp,
                     username: username,
                     gender: selectedOption,
-                    race: selectedOption1,
+                    age: age,
                     
 
                 })
