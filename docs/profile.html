@@ -199,8 +199,8 @@
                         <div class="tab-content">
                             <div class="tab-pane fade active show" id="account-general">
                                 <div class="card-body media align-items-center">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="User Avatar"
-                                        class="d-block ui-w-80" id="avatar-preview">
+                                    <img src="images/blank image icon.jpg" alt="User Avatar" class="d-block ui-w-80"
+                                        id="avatar-preview">
                                     <div class="media-body ml-4 d-flex align-items-center">
                                         <button class="btn btn-outline-primary" id="upload-button">Upload new
                                             photo</button>
@@ -476,19 +476,33 @@
         document.getElementById('file-path').click();
     });
 
-
     document.getElementById('file-path').addEventListener('change', function (event) {
         const file = event.target.files[0];
         if (file && file.type.startsWith('image/')) {
             const reader = new FileReader();
             reader.onload = function (e) {
-                document.getElementById('avatar-preview').src = e.target.result;
+                const imageData = e.target.result;
+
+                
+                document.getElementById('avatar-preview').src = imageData;
+
+                // Save image in localStorage
+                localStorage.setItem('uploadedImage', imageData);
             };
             reader.readAsDataURL(file);
         } else {
             alert('Please select a valid image file.');
         }
     });
+
+    
+    window.addEventListener('load', function () {
+        const savedImage = localStorage.getItem('uploadedImage');
+        if (savedImage) {
+            document.getElementById('avatar-preview').src = savedImage;
+        }
+    });
+
 
 
     document.getElementById('reset-btn').addEventListener('click', function () {
@@ -643,18 +657,18 @@
         }
 
         try {
-            
+
             const credential = EmailAuthProvider.credential(user.email, currentPassword);
             await reauthenticateWithCredential(user, credential);
 
-           
+
             await updatePassword(user, newPassword);
             alert("Password changed successfully!");
 
-            
+
             auth.signOut().then(() => {
                 alert("Password updated. Please log in again.");
-                window.location.href = "sign in.html"; 
+                window.location.href = "sign in.html";
             });
 
         } catch (error) {
