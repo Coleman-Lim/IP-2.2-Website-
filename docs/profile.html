@@ -25,35 +25,35 @@
 </head>
 
 <style>
-        @font-face {
-            font-family: 'sewalik';
-            src: url('Font/sewalik') format('truetype'); 
-        }
+    @font-face {
+        font-family: 'sewalik';
+        src: url('Font/sewalik') format('truetype');
+    }
 
-        @font-face {
-            font-family: 'sewalikBold';
-            src: url('Font/sewalikBold') format('truetype'); 
-        }
+    @font-face {
+        font-family: 'sewalikBold';
+        src: url('Font/sewalikBold') format('truetype');
+    }
 
-        @font-face {
-            font-family: 'sewalikSemiBold';
-            src: url('Font/sewalikSemiBold') format('truetype'); 
-        }
+    @font-face {
+        font-family: 'sewalikSemiBold';
+        src: url('Font/sewalikSemiBold') format('truetype');
+    }
 
-        body {
-            font-family: url('Font/sewalik');
-            font-size: 20px;
-        }
+    body {
+        font-family: url('Font/sewalik');
+        font-size: 20px;
+    }
 
-        h1{
-            font-family: url('Font/sewalikBold');
-        }
+    h1 {
+        font-family: url('Font/sewalikBold');
+    }
 
-        h2{
-            font-family: url('Font/sewalikSemiBold');
-            margin-bottom: 20px;
-        }
-        
+    h2 {
+        font-family: url('Font/sewalikSemiBold');
+        margin-bottom: 20px;
+    }
+
     body {
         margin: 0;
         padding: 0;
@@ -61,7 +61,7 @@
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
-        
+
     }
 
     .gradient-bg {
@@ -171,6 +171,7 @@
                         onclick="window.location.href = 'gameoverview.html'">
                         <img src="images/house.jpg" alt="Back" style="width: 50px; height: 50px; border-radius: 50%;">
                     </button>
+
                 </form>
             </div>
         </div>
@@ -199,7 +200,7 @@
                                 <div class="card-body media align-items-center">
                                     <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="User Avatar"
                                         class="d-block ui-w-80" id="avatar-preview">
-                                    <div class="media-body ml-4">
+                                    <div class="media-body ml-4 d-flex align-items-center">
                                         <button class="btn btn-outline-primary" id="upload-button">Upload new
                                             photo</button>
                                         <input type="file" class="user-file" accept="image/jpeg, image/png, image/jpg"
@@ -209,7 +210,12 @@
                                             id="reset-btn">Reset</button>
                                         <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K
                                         </div>
+
+                                        
+                                        <a href="sign in.html" class="btn btn-outline-success ms-auto" role="button">Log
+                                            Out</a>
                                     </div>
+
                                 </div>
                                 <form id="changeUserDetails">
                                     <hr class="border-light m-0">
@@ -277,18 +283,18 @@
             <img id="modalImage" class="modal-content" alt="Image">
             <div id="modalDescription" class="modal-description"></div>
         </div>
-        
+
         <div class="album py-5 bg-body-tertiary">
             <div class="container">
-                
+
                 <div class="d-flex align-items-center mb-3">
-                    <h1 class="GalleryText me-3">Gallery</h1> 
-                    <button id="refreshButton" class="btn btn-primary">Refresh</button> 
+                    <h1 class="GalleryText me-3">Gallery</h1>
+                    <button id="refreshButton" class="btn btn-primary">Refresh</button>
                 </div>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="gallery"></div>
             </div>
         </div>
-        
+
 
 
         <div class="container my-4">
@@ -533,7 +539,7 @@
 
     });
 
-    
+
     function loadScreenshots(uid) {
         const gallery = document.querySelector(".row.g-3");
         gallery.innerHTML = "";
@@ -554,7 +560,7 @@
                     const ssArrayReverse = ssArray.reverse();
                     console.log(ssArrayReverse);
 
-                    
+
                     for (let i = 0; i < ssArrayReverse.length; i++) {
                         const screenshotData = ssArrayReverse[i];
                         const cardHTML = `
@@ -574,18 +580,18 @@
                     `;
                         gallery.insertAdjacentHTML("beforeend", cardHTML);
 
-                        
+
                         const viewButton = document.getElementById(`view-btn-${i}`);
                         const deleteButton = document.getElementById(`delete-btn-${i}`);
                         const image = document.getElementById(`image-${i}`);
 
-                        
+
                         viewButton.addEventListener("click", () => {
                             console.log(`View button clicked for image ${i}`);
                             openModal(screenshotData.URL);
                         });
 
-                        
+
                         deleteButton.addEventListener("click", () => {
                             const cardToDelete = document.getElementById(`card-${i}`);
                             if (cardToDelete) {
@@ -605,7 +611,7 @@
         });
     }
 
-    
+
     function openModal(imageURL) {
         const modal = document.getElementById("imageModal");
         const modalImage = document.getElementById("modalImage");
@@ -616,14 +622,14 @@
         modalDescription.textContent = "Click outside to close";
     }
 
-    
+
     function closeModal(event) {
         event.stopPropagation();
         const modal = document.getElementById("imageModal");
         modal.style.display = "none";
     }
 
-    
+
     window.onclick = function (event) {
         const modal = document.getElementById("imageModal");
         if (event.target === modal) {
@@ -631,15 +637,15 @@
         }
     };
 
-    
+
     document.getElementById("refreshButton").addEventListener("click", () => {
-        loadScreenshots(userId); 
+        loadScreenshots(userId);
     });
 
-    
+
     setInterval(() => {
         loadScreenshots(userId);
-    }, 5000); 
+    }, 5000);
 
 
 
