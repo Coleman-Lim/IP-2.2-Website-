@@ -105,33 +105,34 @@
     }
 
     @font-face {
-            font-family: 'sewalik';
-            src: url('Font/sewalik') format('truetype'); 
-        }
+      font-family: 'sewalik';
+      src: url('Font/sewalik') format('truetype');
+    }
 
-        @font-face {
-            font-family: 'sewalikBold';
-            src: url('Font/sewalikBold') format('truetype'); 
-        }
+    @font-face {
+      font-family: 'sewalikBold';
+      src: url('Font/sewalikBold') format('truetype');
+    }
 
-        @font-face {
-            font-family: 'sewalikSemiBold';
-            src: url('Font/sewalikSemiBold') format('truetype'); 
-        }
+    @font-face {
+      font-family: 'sewalikSemiBold';
+      src: url('Font/sewalikSemiBold') format('truetype');
+    }
 
-        body {
-            font-family: url('Font/sewalik');
-            font-size: 20px;
-        }
+    body {
+      font-family: url('Font/sewalik');
+      font-size: 20px;
+    }
 
-        h1{
-            font-family: url('Font/sewalikBold');
-        }
+    h1 {
+      font-family: url('Font/sewalikBold');
 
-        h2{
-            font-family: url('Font/sewalikSemiBold');
-            margin-bottom: 20px;
-        }
+    }
+
+    h2 {
+      font-family: url('Font/sewalikSemiBold');
+      margin-bottom: 20px;
+    }
 
     #myBtn {
       display: none;
@@ -160,7 +161,7 @@
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
-      
+
     }
   </style>
 
@@ -206,40 +207,43 @@
 
   <main>
 
-    <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+    <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel" style="height: 800px;">
+      <!-- Set the desired height here -->
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
           aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
         <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
       </div>
-      <div class="carousel-inner">
+      <div class="carousel-inner" style="height: 100%;">
         <div class="carousel-item active">
-          <img src="images/placeholder1.jpg" class="d-block w-100" width="100%" height="100%" alt="Empower">
+          <img src="images/images.jpg" class="d-block w-100" alt="Empower"
+            style="object-fit: cover; height: 800px; width: 100%;">
+          <!-- Image now takes full height of the container -->
           <div class="container">
-            <div class="carousel-caption text-start">
+            <div class="carousel-caption text-end">
               <h1>Empowering Voices through Hands</h1>
               <p class="opacity-75">Learn about Singapore Sign Language with Mixed Reality.</p>
-
             </div>
           </div>
         </div>
         <div class="carousel-item">
-          <img src="images/terraingame.png" class="d-block w-100" width="100%" height="100%" alt="Unleash your Creativity">
+          <img src="images/terraingame.png" class="d-block w-100" alt="Unleash your Creativity"
+            style="object-fit: cover; height: 800px; width: 100%;"> <!-- Adjusted height here as well -->
           <div class="container">
             <div class="carousel-caption">
               <h1>Unleash your Creativity</h1>
-              <p>Some representative placeholder content for the second slide of the carousel.</p>
+              <p>Try out our new Terrain Gamemode!</p>
             </div>
           </div>
         </div>
-        
         <div class="carousel-item">
-          <img src="images/testing1.jpg" class="d-block w-100" width="100%" height="100%" alt="Empower">
+          <img src="images/guy2.png" class="d-block w-100" alt="Empower"
+            style="object-fit: cover; height: 800px; width: 100%;"> <!-- Same here for the third image -->
           <div class="container">
-            <div class="carousel-caption text-end">
-              <h1>One more for good measure.</h1>
-              <p>Some representative placeholder content for the third slide of this carousel.</p>
+            <div class="carousel-caption text-start">
+              <h1>Learn through play.</h1>
+              <p>Have fun on the go!</p>
             </div>
           </div>
         </div>
@@ -253,6 +257,7 @@
         <span class="visually-hidden">Next</span>
       </button>
     </div>
+
 
 
     <!-- Marketing messaging and featurettes
@@ -276,7 +281,8 @@
       <div class="row featurette">
         <div class="col-md-7">
           <h2 class="featurette-heading fw-normal lh-1">HoloHands</h2>
-          <p class="lead">is a mixed reality game that aims to teach users the Singapore Sign Language (SgSL) alphabet through Mixed Reality.</p>
+          <p class="lead">is a mixed reality game that aims to teach users the Singapore Sign Language (SgSL) alphabet
+            through Mixed Reality.</p>
         </div>
         <div class="col-md-5">
           <img src="images/logo.png" alt="HoloHands Logo" class="img-fluid mx-auto" width="300" height="300">
@@ -285,11 +291,11 @@
 
       <hr class="featurette-divider">
 
-      <div class="container mt-4">
-        <h2 class="fw-bold">3 Main Features:</h2>
+      <div class="container mt-5">
+        <h2 class="fw-bold mb-4">3 Main Features</h2>
         <div class="row">
           <div class="col-md-6">
-            <ol>
+            <ol class="list-unstyled">
               <li><strong>Learning Mode</strong></li>
               <li><strong>Quiz Mode</strong></li>
               <li><strong>Terrain Assembly Mode</strong></li>
@@ -302,33 +308,34 @@
           </div>
         </div>
       </div>
-
+      
       <hr class="featurette-divider">
-
-      <div class="container mt-4">
-        <h2 class="fw-bold">2 Ways to Play</h2>
-        
+      
+      <div class="container mt-5">
+        <h2 class="fw-bold mb-4">2 Ways to Play</h2>
+      
         <div class="row align-items-center mb-4">
-          <div class="col-md-5">
-            <img src="path-to-your-image1.png" class="img-fluid rounded shadow" alt="Passthrough Mode">
+          <div class="col-md-5 mb-3 mb-md-0">
+            <img src="images/passthrough.png" class="img-fluid rounded shadow" alt="Passthrough Mode">
           </div>
           <div class="col-md-7">
-            <h4><strong>1. Passthrough Mode</strong></h4>
+            <h4 class="fw-bold">1. Passthrough Mode</h4>
             <p>Use your surroundings, integrate them into the experience for a more immersive interaction!</p>
           </div>
         </div>
       
         <div class="row align-items-center">
-          <div class="col-md-5">
+          <div class="col-md-5 mb-3 mb-md-0">
             <img src="images/virtual room.png" class="img-fluid rounded shadow" alt="Virtual Room">
           </div>
           <div class="col-md-7">
-            <h4><strong>2. Virtual Room</strong></h4>
+            <h4 class="fw-bold">2. Virtual Room</h4>
             <p>No space? No problem! Use our virtual 3D model room that offers an equally engaging experience in a compact, controlled environment.</p>
           </div>
         </div>
       </div>
       
+
 
       <hr class="featurette-divider">
 
@@ -342,7 +349,7 @@
       <footer class="py-5">
         <div class="row">
           <div class="col-6 col-md-2 mb-3">
-            <h5>Section</h5>
+            <h5>Section 1</h5>
             <ul class="nav flex-column">
               <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
               <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
@@ -353,24 +360,24 @@
           </div>
 
           <div class="col-6 col-md-2 mb-3">
-            <h5>Section</h5>
+            <h5>Section 2</h5>
             <ul class="nav flex-column">
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Twitter</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Instagram</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Facebook</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">TikTok</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Phone Number</a></li>
             </ul>
           </div>
 
           <div class="col-6 col-md-2 mb-3">
-            <h5>Section</h5>
+            <h5>Section 3</h5>
             <ul class="nav flex-column">
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Dashboard</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Key Features</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Plans</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Help Center</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Company Info</a></li>
             </ul>
           </div>
 
