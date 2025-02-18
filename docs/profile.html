@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
 
 
 </head>
@@ -95,35 +97,65 @@
         background-color: #555;
     }
 
+    /* Modal background */
     .modal {
         display: none;
-        /* Hidden by default */
         position: fixed;
-        /* Stay in place */
         z-index: 1;
-        /* Sit on top */
         padding-top: 100px;
-        /* Location of the modal */
         left: 0;
         top: 0;
         width: 100%;
-        /* Full width */
         height: 100%;
-        /* Full height */
         overflow: auto;
-        /* Enable scroll if needed */
-        background-color: rgb(0, 0, 0);
-        /* Fallback color */
         background-color: rgba(0, 0, 0, 0.9);
-        /* Black w/ opacity */
+        /* Black background with opacity */
     }
 
+    /* Modal content */
     .modal-content {
         margin: auto;
         display: block;
         width: 80%;
         max-width: 700px;
+        background-color: lightblue;
+        /* White background */
+        border: 3px solid lightblue;
+        /* White border */
+        border-radius: 10px;
+        /* Rounded corners */
+        padding: 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        /* Soft shadow for 3D effect */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
+    /* Add a hover effect for the modal content */
+    .modal-content:hover {
+        transform: scale(1.02);
+        /* Slightly scale up the modal */
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        /* Stronger shadow on hover */
+    }
+
+    /* Image inside modal */
+    .modal-content img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        /* Rounded corners for image */
+    }
+
+    /* Optional: Add padding to description text for better spacing */
+    .modal-description {
+        margin-top: 10px;
+        font-size: 1.2rem;
+        color: #555;
+        text-align: center;
+        font-family: Arial, sans-serif;
+        opacity: 0.8;
+    }
+
 
 
 
@@ -304,35 +336,48 @@
                     <div class="col-6 col-md-2 mb-3">
                         <h5>General</h5>
                         <ul class="nav flex-column">
-                          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-                          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
-                          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
-                          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-                          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a>
+                            </li>
                         </ul>
-                      </div>
-            
-                      <div class="col-6 col-md-2 mb-3">
+                    </div>
+
+                    <div class="col-6 col-md-2 mb-3">
                         <h5>Social Platforms</h5>
                         <ul class="nav flex-column">
-                          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Twitter</a></li>
-                          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Instagram</a></li>
-                          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Facebook</a></li>
-                          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">TikTok</a></li>
-                          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Phone Number</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Twitter</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Instagram</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Facebook</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">TikTok</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Phone
+                                    Number</a></li>
                         </ul>
-                      </div>
-            
-                      <div class="col-6 col-md-2 mb-3">
+                    </div>
+
+                    <div class="col-6 col-md-2 mb-3">
                         <h5>Trends</h5>
                         <ul class="nav flex-column">
-                          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Dashboard</a></li>
-                          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Key Features</a></li>
-                          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Plans</a></li>
-                          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Help Center</a></li>
-                          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Company Info</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Dashboard</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Key
+                                    Features</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Plans</a>
+                            </li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Help
+                                    Center</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Company
+                                    Info</a></li>
                         </ul>
-                      </div>
+                    </div>
 
                     <div class="col-md-5 offset-md-1 mb-3">
                         <form>
@@ -525,37 +570,37 @@
                     const ssArrayReverse = ssArray.reverse();
                     console.log(ssArrayReverse);
 
-
                     for (let i = 0; i < ssArrayReverse.length; i++) {
                         const screenshotData = ssArrayReverse[i];
                         const cardHTML = `
-                        <div class="col" id="card-${i}">
-                            <div class="card shadow-sm">
-                                <img src="${screenshotData.URL}" alt="Screenshot" class="card-img-top" id="image-${i}">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group flex-column w-100">
-                                            <button type="button" class="btn btn-sm mb-2 w-100 btn-outline-secondary" id="view-btn-${i}">View</button>
-                                            <button type="button" class="btn btn-sm btn-danger w-100" id="delete-btn-${i}">Delete</button> 
-                                        </div>
+                    <div class="col" id="card-${i}">
+                        <div class="card shadow-sm">
+                            <img src="${screenshotData.URL}" alt="Screenshot" class="card-img-top" id="image-${i}">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group w-100">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" id="view-btn-${i}">
+                                            <i class="bi bi-eye"></i> View
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-danger" id="delete-btn-${i}">
+                                            <i class="bi bi-trash"></i> Delete
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    `;
+                    </div>
+                `;
                         gallery.insertAdjacentHTML("beforeend", cardHTML);
-
 
                         const viewButton = document.getElementById(`view-btn-${i}`);
                         const deleteButton = document.getElementById(`delete-btn-${i}`);
                         const image = document.getElementById(`image-${i}`);
 
-
                         viewButton.addEventListener("click", () => {
                             console.log(`View button clicked for image ${i}`);
                             openModal(screenshotData.URL);
                         });
-
 
                         deleteButton.addEventListener("click", () => {
                             const cardToDelete = document.getElementById(`card-${i}`);
@@ -566,16 +611,13 @@
                                         let index = 0;
                                         snapshot.forEach((child) => {
                                             if (index === i) {
-                                                const screenshotKey = child.key; // Get the Firebase key
+                                                const screenshotKey = child.key;
                                                 console.log(`Deleting screenshot with key: ${screenshotKey}`);
 
-                                                // Delete from Firebase Database
                                                 const screenshotRef = ref(db, `screenshots/${uid}/${screenshotKey}`);
                                                 remove(screenshotRef)
                                                     .then(() => {
                                                         console.log(`Screenshot ${i} deleted from Firebase`);
-
-                                                        // Remove from UI
                                                         cardToDelete.remove();
                                                         console.log(`Card ${i} deleted`);
                                                     })
@@ -591,7 +633,6 @@
                                 });
                             }
                         });
-
                     }
                 } catch (error) {
                     console.log("Error processing data", error);
@@ -603,6 +644,7 @@
             console.log("Error fetching data", error);
         });
     }
+
 
 
     function openModal(imageURL) {
